@@ -1,0 +1,115 @@
+networks:
+
+      Transcendence_Net:
+        name: Trascendence
+        driver: bridge
+
+services:
+
+  nginx:
+    container_name: nginx
+    build: requirements/nginx/
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - Transcendence_Net
+    stdin_open: true
+    tty: true
+    volumes:
+      - FRONTEND:/web
+    env_file:
+      - .env
+
+#---------------------------------------------------------------------------------------------------------------------------
+
+  frontend:
+    container_name: frontend
+    build: ./requirements/frontend/
+    depends_on:
+      - backend
+    volumes:
+      - FRONTEND:/web
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    networks:
+      - Transcendence_Net
+    restart: always
+
+#--------------------------------------------------------------------------------------------------------------------->
+
+
+  backend:
+    container_name: backend
+    build: ./requirements/backend/
+    depends_on:
+      - postgres
+    volumes:
+      - BACKEND:/django
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    networks:
+      - Transcendence_Net
+    restart: always
+
+
+ #---------------------------------------------------------------------------------------------------------------------------
+
+  postgres:
+    container_name: postgres
+    build: ./requirements/postgres/
+    volumes:
+      - TR_DB:/var/lib/postgresql/data
+    env_file:
+      - .env
+    networks:
+      - Transcendence_Net
+    restart: always
+
+
+
+############################################################################################################################
+############################################################################################################################
+
+############################################################################################################################
+################################################### VOLUMI FISICI ##########################################################
+
+volumes:
+
+    FRONTEND:
+       name: frontend-volume
+       driver: local
+       driver_opts:
+          device: ${HOME}/data/FRONTEND
+          o: bind
+          type: none
+
+#---------------------------------------------------------------------------------------------------------------------------
+
+    BACKEND:
+       name: backend-volume
+       driver: local
+       driver_opts:
+          device: ${HOME}/data/BACKEND
+          o: bind
+          type: none
+
+#---------------------------------------------------------------------------------------------------------------------->
+
+    TR_DB:
+        name: postgres-volume
+        driver: local
+        driver_opts:
+          device: ${HOME}/data/TR_DB
+          o: bind
+          type: none
+
+
