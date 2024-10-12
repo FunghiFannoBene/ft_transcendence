@@ -8,13 +8,13 @@ down:
 	docker-compose -f $(COMPOSE_PATH) down
 
 backend:
-docker-compose ./srcs/requirements/backend -d up
+	docker-compose ./srcs/requirements/backend -d up
 
 frontend:
-docker-compose ./srcs/requirements/frontend -d up
+	docker-compose ./srcs/requirements/frontend -d up
 
 database:
-docker-compose ./srcs/requirements/postgres -d up
+	docker-compose ./srcs/requirements/postgres -d up
 
 push:
-git add ../* && git commit -m fastpush && git push
+	git add . && git commit -m fastpush && git push
