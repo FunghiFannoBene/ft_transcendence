@@ -33,7 +33,7 @@ services:
     depends_on:
       - backend
     volumes:
-      - FRONTEND:/web
+      - FRONTEND:/web/
     env_file:
       - .env
     stdin_open: true
@@ -88,7 +88,7 @@ volumes:
        name: frontend-volume
        driver: local
        driver_opts:
-          device: ${HOME}/data/FRONTEND
+          device: ${HOME}/ft_transcendence/data/FRONTEND
           o: bind
           type: none
 
@@ -98,7 +98,7 @@ volumes:
        name: backend-volume
        driver: local
        driver_opts:
-          device: ${HOME}/data/BACKEND
+          device: ${HOME}/ft_transcendence/data/BACKEND
           o: bind
           type: none
 
@@ -108,7 +108,7 @@ volumes:
         name: postgres-volume
         driver: local
         driver_opts:
-          device: ${HOME}/data/TR_DB
+          device: ${HOME}/ft_transcendence/data/TR_DB
           o: bind
           type: none
 
