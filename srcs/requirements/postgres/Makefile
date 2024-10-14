@@ -20,3 +20,4 @@ status:
 
 exec:
 	docker exec -it postgres_database psql -U 42firenze -d transcendenceDB
+

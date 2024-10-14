@@ -48,17 +48,17 @@ services:
   backend:
     container_name: backend
     build: ./requirements/backend/
+    restart: always
+    ports:
+      - "8000:8000"
     depends_on:
       - postgres
     volumes:
       - BACKEND:/django
     env_file:
       - .env
-    stdin_open: true
-    tty: true
     networks:
       - Transcendence_Net
-    restart: always
 
 
  #---------------------------------------------------------------------------------------------------------------------------
