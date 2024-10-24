@@ -2,3 +2,4 @@ Django
 gunicorn
 djangorestframework==3.14.0
 psycopg2-binary
+django-allauth

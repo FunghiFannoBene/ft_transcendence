@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "BACKEND",
+			"path": "../.."
+		},
+		{
+			"name": "backend",
+			"path": "../../../../srcs/requirements/backend"
+		},
+		{
+			"path": "../../../../srcs"
+		}
+	],
+	"settings": {}
+}

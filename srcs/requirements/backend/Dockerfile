@@ -7,6 +7,7 @@ RUN python3 -m venv /root/venv
 ARG UID=1000
 ARG GID=1000
 RUN groupadd -g $GID user && useradd -m -u $UID -g $GID user
+RUN chown -R 1000:1000 /django
 
 # PYTHON INSTALL
 COPY requirements.txt .
