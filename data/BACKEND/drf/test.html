@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Login con OAuth2 di 42</title>
+</head>
+<body>
+    <h1>Test Login con OAuth2 (42)</h1>
+    <button onclick="loginWithDjango()">Login con 42</button>
+    <p id="status">Clicca il pulsante per avviare il login con 42.</p>
+
+    <script>
+        function loginWithDjango() {
+            // Reindirizza all'URL di login configurato con django-allauth per il provider 42
+            const loginUrl = "http://localhost:8000/accounts/fortytwo/login/";
+            window.location.href = loginUrl;
+			
+        }
+    </script>
+</body>
+</html>

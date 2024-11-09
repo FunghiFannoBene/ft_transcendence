@@ -14,33 +14,30 @@ services:
       - "80:80"
       - "443:443"
     depends_on:
-      - frontend
       - backend
     networks:
       - Transcendence_Net
     stdin_open: true
     tty: true
-    volumes:
-      - FRONTEND:/web
     env_file:
       - .env
 
 #---------------------------------------------------------------------------------------------------------------------------
 
-  frontend:
-    container_name: frontend
-    build: ./requirements/frontend/
-    depends_on:
-      - backend
-    volumes:
-      - FRONTEND:/web/
-    env_file:
-      - .env
-    stdin_open: true
-    tty: true
-    networks:
-      - Transcendence_Net
-    restart: always
+  # frontend:
+  #   container_name: frontend
+  #   build: ./requirements/frontend/
+  #   depends_on:
+  #     - backend
+  #   volumes:
+  #     - FRONTEND:/web/
+  #   env_file:
+  #     - .env
+  #   stdin_open: true
+  #   tty: true
+  #   networks:
+  #     - Transcendence_Net
+  #   restart: always
 
 #--------------------------------------------------------------------------------------------------------------------->
 
@@ -84,13 +81,13 @@ services:
 
 volumes:
 
-    FRONTEND:
-       name: frontend-volume
-       driver: local
-       driver_opts:
-          device: ${HOME}/ft_transcendence/data/FRONTEND
-          o: bind
-          type: none
+    # FRONTEND:
+    #    name: frontend-volume
+    #    driver: local
+    #    driver_opts:
+    #       device: ${HOME}/ft_transcendence/data/FRONTEND
+    #       o: bind
+    #       type: none
 
 #---------------------------------------------------------------------------------------------------------------------------
 

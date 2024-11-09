@@ -14,4 +14,4 @@ COPY requirements.txt .
 RUN /root/venv/bin/pip install -r requirements.txt
 
 # Comando per avviare il server Django
-CMD ["/root/venv/bin/python3", "/django/trascendence/manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["/root/venv/bin/python3", "/django/drf/manage.py", "runserver", "0.0.0.0:8000"]
