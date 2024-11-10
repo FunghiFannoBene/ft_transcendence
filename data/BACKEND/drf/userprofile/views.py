@@ -9,6 +9,12 @@ class UserProfileView(RetrieveUpdateDestroyAPIView):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
     permission_classes = [IsAuthenticated, IsOwner]
+    
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        # Elimina l'utente associato
+        instance.user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class PlayerMatchDetailView(RetrieveAPIView):
     queryset = PlayerMatchDetail.objects.all()

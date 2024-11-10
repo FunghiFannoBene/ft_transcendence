@@ -1,7 +1,7 @@
 networks:
 
       Transcendence_Net:
-        name: Trascendence
+        name: Transcendence_Net
         driver: bridge
 
 services:
