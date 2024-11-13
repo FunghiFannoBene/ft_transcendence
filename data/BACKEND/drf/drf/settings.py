@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-%6ls5nl@5q_p0jfd)-(-xyok4jire6r1s=92x9)+&i6pr#8_@r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'backend', '127.0.0.1']
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -94,6 +94,7 @@ INSTALLED_APPS = [
     "authentication.apps.AuthenticationConfig",
     'allauth.socialaccount.providers.oauth2',
     'userprofile',
+    'django_prometheus'
 ]
 
 SOCIALACCOUNT_AUTO_SIGNUP = False
@@ -106,6 +107,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 MIDDLEWARE = [
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -113,7 +115,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware'
+    'allauth.account.middleware.AccountMiddleware',
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -149,10 +152,15 @@ WSGI_APPLICATION = 'drf.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': 'postgres',
+        'PORT': os.getenv('POSTGRES_PORT'),
     }
 }
+
 
 
 # Password validation

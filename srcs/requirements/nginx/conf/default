@@ -1,0 +1,47 @@
+server
+{
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    return 444;
+}
+
+server {
+        listen 443 ssl default_server;
+        listen [::]:443 ssl default_server;
+        
+        ssl_protocols	TLSv1.3;
+
+        include snippets/certificate.conf;
+	include snippets/ssl-params.conf;
+
+        root /srv/www;
+        index index.php ;
+
+        server_name www.shhuang.42.fr shhuang.42.fr;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+        location ~ [^/]\.php(/|$) {
+                try_files $uri = 404;
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass wordpress:9000;
+                fastcgi_index index.php;
+                include fastcgi_params;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        }
+        
+        error_page 403 404 /404.html;
+        location = /404.html {
+                root /srv/www;
+                internal;
+        }
+
+        error_page 500 502 503 504 /505.html;
+        location = /505.html {
+                root /srv/www;
+                internal;
+        }
+}

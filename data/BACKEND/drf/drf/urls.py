@@ -24,5 +24,6 @@ urlpatterns = [
     path("drf-api/", include("rest_framework.urls")), #api
     path('oauth/', include('allauth.urls')),  # Per il sistema di autenticazione generale
     path('', include("snippets.urls")),
-    path('', include("userprofile.urls")),   
+    path('', include("userprofile.urls")),
+    path('', include('django_prometheus.urls')),
 ]
