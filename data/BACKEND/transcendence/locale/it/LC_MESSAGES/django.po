@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-17 14:37+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: pong/templates/pong/access-menu.html:32
+msgid "Log in"
+msgstr "Accedi"
+
+#: pong/templates/pong/access-menu.html:45
+msgid "Let's play!"
+msgstr "Giochiamo!"
+
+#: pong/templates/pong/access-menu.html:50
+msgid "Sign up"
+msgstr "Registrati"
+
+#: pong/templates/pong/access-menu.html:70
+msgid "Confirm!"
+msgstr "Conferma!"
+
+#: pong/templates/pong/access-menu.html:80
+msgid "Almost there"
+msgstr "Ci sei quasi"
+
+#: pong/templates/pong/base.html:29
+msgid "Your browser does not support the video tag."
+msgstr "Il tuo browser non supporta il tag video."
+
+#: pong/templates/pong/base.html:40 transcendence/settings.py:142
+msgid "English"
+msgstr "Inglese"
+
+#: pong/templates/pong/game-menu.html:64
+msgid "MULTIPLAYER"
+msgstr "MULTIGIOCATORE"
+
+#: pong/templates/pong/game-menu.html:66
+msgid "Host/Join<br/>a game,<br/>with a friend"
+msgstr "Ospita/Unisciti a<br/>una partita,<br/>con un amico"
+
+#: pong/templates/pong/game-menu.html:100
+msgid "TOURNAMENT"
+msgstr "TORNEO"
+
+#: pong/templates/pong/game-menu.html:102
+msgid "Play with<br/>friends,<br/>anywhere"
+msgstr "Gioca con<br/>amici,<br/>ovunque"
+
+#: pong/templates/pong/game-menu.html:111
+msgid "Select a game mode to start playing"
+msgstr "Seleziona una modalità di gioco per iniziare a giocare"
+
+#: pong/templates/pong/home.html:33
+msgid "S T A R T"
+msgstr "I N I Z I A"
+
+#: pong/templates/pong/home.html:42
+msgid "Press 'START' to play"
+msgstr "Premi 'INIZIA' per giocare"
+
+#: pong/templates/pong/user-profile.html:18
+msgid "Profile Picture"
+msgstr "Immagine del profilo"
+
+#: pong/templates/pong/user-profile.html:23
+msgid "JPG or PNG no larger than 5 MB"
+msgstr "JPG o PNG non più grande di 5 MB"
+
+#: pong/templates/pong/user-profile.html:25
+msgid "Upload new image"
+msgstr "Carica nuova immagine"
+
+#: pong/templates/pong/user-profile.html:32
+msgid "Account Details"
+msgstr "Dettagli dell'account"
+
+#: pong/templates/pong/user-profile.html:45
+msgid "First name"
+msgstr "Nome"
+
+#: pong/templates/pong/user-profile.html:50
+msgid "Last name"
+msgstr "Cognome"
+
+#: pong/templates/pong/user-profile.html:56
+msgid "Email address"
+msgstr "Indirizzo email"
+
+#: pong/templates/pong/user-profile.html:60
+msgid "Save changes"
+msgstr "Salva modifiche"
+
+#: pong/templates/pong/user-profile.html:68
+msgid "My friends"
+msgstr "I miei amici"
+
+#: pong/templates/pong/user-profile.html:111
+#: pong/templates/pong/user-profile.html:152
+msgid "Victories"
+msgstr "Vittorie"
+
+#: pong/templates/pong/user-profile.html:118
+#: pong/templates/pong/user-profile.html:159
+msgid "Losses"
+msgstr "Sconfitte"
+
+#: pong/templates/pong/user-profile.html:125
+#: pong/templates/pong/user-profile.html:166
+msgid "Ties"
+msgstr "Pareggi"
+
+#: pong/templates/pong/user-profile.html:186
+msgid "Keep it under control"
+msgstr "Tieni tutto sotto controllo"
+
+#: transcendence/settings.py:143
+msgid "Italian"
+msgstr "Italiano"
+
+#: transcendence/settings.py:144
+msgid "Japanese"
+msgstr "Giapponese"

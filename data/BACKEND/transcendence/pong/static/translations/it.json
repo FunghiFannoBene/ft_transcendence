@@ -1,0 +1,37 @@
+{
+    "content-error": "Errore 404: Pagina Non Trovata",
+    "footer-error": "Sicuro?",
+
+    "login": "Accedi",
+    "login-btn": "Giochiamo!",
+    "signup": "Registrati",
+    "signup-btn": "Conferma!",
+    "footer-access": "Ci sei quasi",
+
+    "video": "Il tuo browser non supporta il tag video.",
+
+    "multiplayer-mode": "-><br/>MULTIGIOCATORE<br/><-",
+    "multiplayer-info": "Ospita/Partecipa<br/>a un gioco,<br/>con un amico",
+    "tournament-mode": "TORNEO<br/>@-",
+    "tournament-info": "Gioca con<br/>amici,<br/>ovunque",
+    "footer-menu": "Seleziona una modalità di gioco per iniziare a giocare",
+
+    "start-btn": "I N I Z I A",
+    "footer-home": "Premi 'INIZIA' per giocare",
+
+    "pfp": "Immagine del Profilo",
+    "pfp-info": "JPG o PNG non più grande di 5 MB",
+    "pfp-new": "Carica nuova immagine",
+    "account-details": "Dettagli Account",
+    "username": "Nome utente (come apparirà agli altri utenti sul sito)",
+    "first-name": "Nome",
+    "last-name": "Cognome",
+    "email": "Indirizzo email",
+    "save-btn": "Salva modifiche",
+    "friends": "I miei amici",
+    "multiplayer-scores": "AIUTO",
+    "victories": "Vittorie",
+    "losses": "Sconfitte",
+    "ties": "Pareggi",
+    "tournament-scores": "AIUTO"
+}

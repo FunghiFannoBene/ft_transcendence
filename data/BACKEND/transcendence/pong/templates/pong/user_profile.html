@@ -1,0 +1,184 @@
+{% load i18n %}
+{% load static %}
+
+<!-- <body> -->
+{% if only_content %}
+	{% block content %}
+		<div class="content-container custom-content-container">
+			<div class="row">
+				<div class="col-xl-3">
+					<!-- Profile picture card-->
+					<div class="card mb-4 mb-xl-0 transparent-card">
+						<div class="card-header text-white card-header-bg" data-translate-key="pfp">Profile Picture</div>
+						<div class="card-body text-center">
+							<!-- Profile picture image-->
+							<img class="img-account-profile rounded-circle mb-2" src="{% static 'assets/user-128.png' %}" alt="Admin" class="rounded-circle" width="150"" alt="">
+							<!-- Profile picture help block-->
+							<div class="small font-italic text-muted text-white-50 mb-4" data-translate-key="pfp-info">JPG or PNG no larger than 5 MB</div>
+							<!-- Profile picture upload button-->
+							<button class="btn btn-edit" type="button" data-translate-key="pfp-new">Upload new image</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-6">
+					<!-- Account details card-->
+					<div class="card mb-4 transparent-card">
+						<div class="card-header text-white card-header-bg" data-translate-key="account-details">Account Details</div>
+						<div class="card-body">
+							<form>
+								{% csrf_token %}
+								<!-- Form Group (username)-->
+								<div class="mb-3">
+									<label id="help-form" class="small mb-1" for="inputUsername" data-translate-key="username">Username (how your name will appear to other users on the site)</label>
+									<input class="form-control form-custom" id="inputUsername" type="text" placeholder="Enter your username" value="username">
+								</div>
+								<!-- Form Row-->
+								<div class="row gx-3 mb-3">
+									<!-- Form Group (first name)-->
+									<div class="col-md-6">
+										<label id="help-form" class="small mb-1" for="inputFirstName" data-translate-key="first-name">First name</label>
+										<input class="form-control form-custom" id="inputFirstName" type="text" placeholder="Enter your first name" value="">
+									</div>
+									<!-- Form Group (last name)-->
+										<div class="col-md-6">
+										<label id="help-form" class="small mb-1" for="inputLastName" data-translate-key="last-name">Last name</label>
+										<input class="form-control form-custom" id="inputLastName" type="text" placeholder="Enter your last name" value="">
+									</div>
+								</div>
+								<!-- Form Group (email address)-->
+								<div class="mb-3">
+									<label id="help-form" class="small mb-1" for="inputEmailAddress" data-translate-key="email">Email address</label>
+									<input class="form-control form-custom" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="">
+								</div>
+								<!-- Save changes button-->
+								<button class="btn btn-edit" type="button" data-translate-key="save-btn">Save changes</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3">
+					<!-- Friends list -->
+					<div class="card mb-4 transparent-card">
+						<div class="card-header text-white card-header-bg" data-translate-key="friends">My friends</div>
+						<div class="card-body text-center">
+							<ul class="list-group">
+								{% for friend in friends %}
+								<li class="list-group-item friend-user" data-route="/user_profile/">
+									<!-- dynamic, grows and decreases taking data from db -->
+									<img src="{{ friend.profile_picture.url }}" alt="Profile picture" class="rounded-circle" width="40">
+									<span class="friend-username">{{ friend.username }}</span>
+									<!-- letter icon to send message? -->
+									<!-- <a href="{% url 'send-message' friend.id %}" class="send-message">
+										<img src="{% static 'assets/letter-icon.png' %}" alt="Send Message" width="20">
+									</a> -->
+									<a href="{% url 'unfriend' friend.id %}" class="unfriend">
+										<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#DC3645" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-x"><path d="M2 21a8 8 0 0 1 11.873-7"/><circle cx="10" cy="8" r="5"/><path d="m17 17 5 5"/><path d="m22 17-5 5"/></svg>
+									</a>
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Game charts -->
+			<div class="row mt-1">
+				<!-- Multiplayer -->
+				<div class="col-xl-6">
+					<div class="card mb-2 transparent-card">
+						<div class="card-header text-white card-header-bg">
+							<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#BDC2BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad-2"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
+							&nbsp;&nbsp;Multiplayer&nbsp;&nbsp;
+							<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#BDC2BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad-2"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
+						</div>
+						<div class="card-body p-2">
+							<div class="mb-2">
+								<h5 class="card-title text-white-50 text-center" style="font-size: 15px;" data-translate-key="multiplayer-scores">
+									You've played a total of<span style="color: #745F8F; filter: brightness(2);"> N </span>games!<br>
+									You're currently #<span style="color: #745F8F; filter: brightness(2);">X </span>among your friends
+								</h5>
+							</div>
+							<div class="row text-center">
+								<!-- Victories section -->
+								<div class="col-md-4 border-end">
+									<h6 class="card-title text-white text-center" data-translate-key="victories">Victories</h6>
+									<div id="victories-chart" class="text-white-50" style="font-size: 15px; height: 100px;">
+										progress bars???
+									</div>
+								</div>
+								<!-- Losses section -->
+								<div class="col-md-4 border-end">
+									<h6 class="card-title text-white text-center" data-translate-key="losses">Losses</h6>
+									<div id="losses-chart" class="text-white-50" style="font-size: 15px; height: 100px;">
+										progress bars???
+									</div>
+								</div>
+								<!-- Ties section -->
+								<div class="col-md-4">
+									<h6 class="card-title text-white text-center" data-translate-key="ties">Ties</h6>
+									<div id="ties-chart" class="text-white-50" style="font-size: 15px; height: 100px;">
+										progress bars??? 
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Tournament -->
+				<div class="col-xl-6">
+					<div class="card mb-2 transparent-card">
+						<div class="card-header text-white card-header-bg">
+							<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+							&nbsp;&nbsp;Tournament&nbsp;&nbsp;
+							<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+						</div>
+						<div class="card-body p-2">
+							<div class="mb-2">
+								<h5 class="card-title text-white-50 text-center" style="font-size: 15px;" data-translate-key="tournament-scores">
+									You've scored a total of<span style="color: #745F8F; filter: brightness(2);"> N </span>points!<br>
+									You're currently ranked #<span style="color: #745F8F; filter: brightness(2);">X </span>in the charts
+								</h5>
+							</div>
+							<div class="row text-center">
+								<!-- Victories section -->
+								<div class="col-md-4 border-end">
+									<h6 class="card-title text-white text-center" data-translate-key="victories">Victories</h6>
+									<div id="victories-chart" class="text-white-50" style="font-size: 15px; height: 100px;">
+										progress bars???
+									</div>
+								</div>
+								<!-- Losses section -->
+								<div class="col-md-4 border-end">
+									<h6 class="card-title text-white text-center" data-translate-key="losses">Losses</h6>
+									<div id="losses-chart" class="text-white-50" style="font-size: 15px; height: 100px;">
+										progress bars???
+									</div>
+								</div>
+								<!-- Ties section -->
+								<div class="col-md-4">
+									<h6 class="card-title text-white text-center" data-translate-key="ties">Ties</h6>
+									<div id="ties-chart" class="text-white-50" style="font-size: 15px; height: 100px;">
+										progress bars??? 
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Log Out button-->
+			<button class="btn btn-danger w-100 mt-3 btn-logout" type="button">
+				<a href="{% url 'home' %}" style="color: #fff; text-decoration: none;">Log Out</a>
+			</button>
+		</div>
+	{% endblock %}
+{% endif %}
+
+{% if only_footer %}
+	{% block footer-text %}
+		<p data-translate-key="footer-profile">Keep it under control</p>
+	{% endblock %}
+{% endif %}
+<!-- </body> -->

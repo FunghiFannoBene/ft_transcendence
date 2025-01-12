@@ -1,0 +1,25 @@
+h1 {
+  font-family: "Mikratos Regular";
+  font-size: 150px;
+  text-align: center;
+  margin: 0px;
+}
+
+#btn-start {
+  /* opacity: 0.1; */
+  transition: opacity 1s ease-in-out;
+}
+
+#curtain {
+  position: fixed;
+  background-color: #fff;
+  height: 0; /* starts with curtain not visibile */
+  width: 100%;
+  top: 0; /* starts from the top */
+  z-index: 10;
+  transition: height 2s ease-out; /* animates height */
+}
+
+.active {
+  color: #fff;
+}

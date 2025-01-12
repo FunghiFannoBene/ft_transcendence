@@ -1,0 +1,30 @@
+{% load i18n %}
+{% load static %}
+
+<!-- <body> -->
+{% if only_content %}
+	<!-- {% block content %} -->
+		<div class="mini-game">
+			<div class="clickable"></div>
+			<div class="visual"></div>
+		</div>
+		<h1 id="pong-sign">PONG!</h1>
+		<button id="btn-start" class="btn-animated" data-route="/access_menu/" data-translate-key="start-btn">
+			S T A R T
+		</button>
+	<!-- {% endblock %} -->
+{% endif %}
+  
+{% if only_footer %}
+	<!-- {% block footer-text %} -->
+		<p data-translate-key="footer-home">Press 'START' to play</p>
+	<!-- {% endblock %} -->
+{% endif %}
+  
+{% if only_opening %}
+	<!-- {% block opening %} -->
+		<div id="curtain"></div>
+		<div id="pong-ball"></div>
+	<!-- {% endblock %} -->
+{% endif %}
+<!-- </body> -->

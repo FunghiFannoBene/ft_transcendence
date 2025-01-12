@@ -1,0 +1,35 @@
+#btn-lang {
+  background-color: rgba(111, 88, 159, 0.5);
+  position: fixed;
+  width: 150px;
+  border: none;
+  border-radius: 8px;
+  top: 70px;
+  left: 150px;
+  padding: 0;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.spin-animation {
+  animation: spin_357 0.3s linear;
+}
+
+/* .lang-container {
+  align-items: center;
+} */
+
+#lang-display {
+  display: inline;
+  margin-left: 5px;
+}
+
+/*** keyframes ***/
+@keyframes spin_357 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
