@@ -1,8 +1,0 @@
-@font-face {
-    font-family: 'Mikratos Regular';
-    src: url('../fonts/mikratos/Mikratos-Regular.otf') format('opentype'),
-		 url('../fonts/mikratos/Mikratos-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}

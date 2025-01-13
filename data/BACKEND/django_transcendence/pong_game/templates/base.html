@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+	<title>transcendence</title>
+
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+	<link rel="stylesheet" href="{% static 'css/animated-bg.css' %}">
+	<link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+	<link rel="icon" href="{% static 'media/favicon.ico' %}" type="image/x-icon">
+
+	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/spa.js' %}" type="module" defer></script>
+	<script src="{% static 'js/home.js' %}" type="module" defer></script>
+</head>
+
+<body>
+	<main id="full-page">
+		<div class="container-fluid" id="content-container">
+			<!-- text slider + borders -->
+			<div class="animated-bg">
+				<div class="right-animation">
+					<span></span>
+				</div>
+				<div class="center-animation">
+					<span class="top-center-animation"></span>
+					<span class="bottom-center-animation"></span>
+				</div>
+				<div class="left-animation">
+					<span></span>
+				</div>
+			</div>
+
+			<!-- Placeholder for dynamic main content -->
+			<div class="d-xxl-flex flex-column justify-content-xxl-center align-items-xxl-center" id="dynamic-content">
+				<!--
+				{% block content %}
+				{% endblock %}
+				-->
+			</div>
+			
+			<footer id="bottom-banner"></footer>
+		</div>
+	</main>
+</body>
+</html>

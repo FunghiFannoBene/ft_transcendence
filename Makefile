@@ -8,7 +8,8 @@
 PROJECT_NAME = ft_transcendence
 COMPOSE =
 COMPOSE_PATH = srcs/docker-compose.yml
-USER = shhuang
+# USER = shhuang
+USER = ${shell id -un} # detects user
 
 # detecting OS
 UNAME_S := ${shell uname -s}
