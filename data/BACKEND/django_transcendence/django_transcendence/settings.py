@@ -44,8 +44,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pong_game'
+    # third-party apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'rest_framework',
+    'rest_framework.authtoken',  # Add this line
+    'dj_rest_auth',
+    'pong_game',
 ]
+
+# 42 Login
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'APP': {
+#             'client_id': '<your-client-id>',
+#             'secret': '<your-client-secret>',
+#             'key': ''
+#         }
+#     },
+# }
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Default backend
+    'allauth.account.auth_backends.AuthenticationBackend',  # Allauth backend
+]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,6 +80,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'django_transcendence.urls'
@@ -139,3 +165,23 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# login
+# Base URL for login and logout
+LOGIN_REDIRECT_URL = '/'  # Redirect after successful login
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
+ACCOUNT_LOGOUT_ON_GET = True  # Logs out immediately on a GET request
+
+# Email and Username settings
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # Use 'username', 'email', or 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True  # Require email during signup
+ACCOUNT_EMAIL_VERIFICATION = 'optional'  # Can be 'mandatory', 'optional', or 'none'
+
+# Signup and login behavior
+ACCOUNT_USERNAME_REQUIRED = True  # Require username during signup
+ACCOUNT_SIGNUP_REDIRECT_URL = '/'  # Redirect after signup (optional)
+ACCOUNT_SESSION_REMEMBER = True  # Keep the session logged in
+
+# Email configuration
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3  # Link expiry for confirmation emails
+ACCOUNT_EMAIL_SUBJECT_PREFIX = '[My Project] '  # Prefix for email subjects

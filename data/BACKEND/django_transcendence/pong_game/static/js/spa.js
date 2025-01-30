@@ -38,7 +38,27 @@ export function handleRoute() {
       contentDiv.innerHTML = data.content || "";
 
       // re-attach event listeners for newly injected content if needed
-      // setupNavigation("[data-route]");
+      setupNavigation("[data-route]");
     })
     .catch((error) => console.error("Error loading content:", error));
+}
+
+// note: functions also for lang.js
+export function loadTranslations(lang) {
+  return fetch(`/static/translations/${lang}.json`)
+    .then(response => response.json())
+    .then(translations => {
+      localStorage.setItem("translations", JSON.stringify(translations));
+      applyTranslations(translations);
+    })
+    .catch(error => console.error("Error loading translations:", error));
+}
+
+export function applyTranslations(translations) {
+  document.querySelectorAll("[data-translate-key]").forEach((element) => {
+    const key = element.getAttribute("data-translate-key");
+    if (translations[key]) {
+      element.innerHTML = translations[key];
+    }
+  });
 }

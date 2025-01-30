@@ -1,0 +1,62 @@
+#prompt-play {
+  font-size: 50px;
+  font-family: "Versa Versa";
+  text-align: center;
+  z-index: 1;
+}
+
+#btn-login {
+  margin-right: 30px;
+  width: 300px;
+  height: 69px;
+  font-size: 20px;
+  font-family: "Versa Versa";
+  box-shadow: 3px 4px rgb(0, 0, 0);
+  transition: box-shadow 0.3s, transform 0.3s;
+  background: linear-gradient(120deg, #c32606 30%, #f3a81c 80%, #fdf8a3 100%);
+  border: none;
+  border-radius: 4px;
+}
+
+#btn-signup {
+  border-radius: 4px;
+  font-size: 20px;
+  width: 300px;
+  height: 69px;
+  font-family: "Versa Versa";
+  box-shadow: 3px 4px rgb(0, 0, 0);
+  background: linear-gradient(120deg, #c32606 30%, #f3a81c 80%, #fdf8a3 100%);
+  transition: box-shadow 0.3s, transform 0.3s;
+  border: none;
+  border-radius: 4px;
+}
+
+#btn-login:hover {
+  box-shadow: 0px 0px 0 #000;
+  transform: translate(3px, 4px);
+}
+
+#btn-signup:hover {
+  box-shadow: 0px 0px 0 #000;
+  transform: translate(3px, 4px);
+}
+
+#icon-controller-sx {
+  font-size: 16px;
+  height: 30px;
+  width: 30px;
+  margin-right: 7px;
+}
+
+#icon-ping-pong {
+  font-size: 16px;
+  width: 30px;
+  height: 30px;
+  margin-right: 7px;
+}
+
+#icon-controller-dx {
+  font-size: 16px;
+  width: 30px;
+  height: 30px;
+}

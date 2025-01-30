@@ -1,0 +1,31 @@
+#icon-lang {
+  margin-right: 3px;
+}
+
+#btn-lang {
+  margin-right: 200px;
+  font-family: "Versa Versa";
+}
+
+/* not working */
+#btn-lang:active {
+  border: none;
+}
+
+.dropdown-menu {
+  background: rgb(0, 0, 0);
+}
+
+/* language options */
+.dropdown-item {
+  color: #fff;
+}
+
+.dropdown-item:hover {
+  background-color: transparent;
+  color: #c32606;
+}
+
+.dropdown-item:active {
+  background-color: transparent;
+}

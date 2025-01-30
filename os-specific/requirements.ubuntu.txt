@@ -19,11 +19,6 @@ urllib3==2.2.3
 django-prometheus
 django-jazzmin
 stripe
-channels
-channels-redis
-daphne
 asgiref
 twisted[tls,http2]
-celery[redis]
-django-celery-beat
 colorlog

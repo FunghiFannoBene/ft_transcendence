@@ -19,5 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),  # Adds allauth URLs
     path('', include('pong_game.urls')),  # include the pong_game URLs
+    path('', include('authentication.urls')),  # include the CSRF URLs
 ]

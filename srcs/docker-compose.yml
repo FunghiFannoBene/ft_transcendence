@@ -1,12 +1,13 @@
-#--------------------------------------------------NETWORK-------------------------------------------------------------->
+#------------------------------ NETWORK ------------------------------>
 
 networks:
-      Transcendence_Network:
-        name: ${NETWORK}
-        driver: bridge
+  Transcendence_Network:
+    name: Transcendence_Network
+    driver: bridge
 
-#------------------------------------------------MAIN_SERVICES---------------------------------------------------------->
-#----------------------------------------------------------------------------------------------------------------------->
+#--------------------------------------------------------------------->
+
+#------------------------------ MAIN SERVICES ------------------------------>
 
 services:
   nginx:
@@ -19,7 +20,7 @@ services:
     depends_on:
       - backend
     networks:
-      - ${NETWORK}
+      - Transcendence_Network
     stdin_open: true
     tty: true
     env_file:
@@ -37,7 +38,7 @@ services:
     build: ./requirements/backend/
     restart: always
     ports:
-      - "127.0.0.1:8000:8000"
+      - "8000:8000"
     depends_on:
       - postgres
     volumes:
@@ -45,8 +46,7 @@ services:
     env_file:
       - .env
     networks:
-      - ${NETWORK}
-
+      - Transcendence_Network
 
   postgres:
     container_name: postgres-transcendence
@@ -56,9 +56,13 @@ services:
     env_file:
       - .env
     networks:
-      - ${NETWORK}
+      - Transcendence_Network
     ports:
-      - "127.0.0.1:5432:5432"
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     restart: always
 
   adminer:
@@ -69,50 +73,46 @@ services:
     ports:
       - "127.0.0.1:8080:8080"
     networks:
-      - ${NETWORK}
+      - Transcendence_Network
     restart: always
 
+#------------------------------ UTILS ------------------------------>
+  # redis:
+  #   image: redis:latest
+  #   container_name: redis-transcendence
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - Transcendence_Network
+  #   volumes:
+  #     - REDIS:/data
+  #     - ./redis.conf:/usr/local/etc/redis/redis.conf
+  #   command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+  #   mem_limit: 512m
 
-###################################-------------UTILS---------------#################################################################
+  # daphne:
+  #   build: ./requirements/daphne/
+  #   container_name: daphne-transcendence
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - redis
+  #   networks:
+  #     - Transcendence_Network
+  #   ports:
+  #     - "8001:8001"
+  #   volumes:
+  #     - BACKEND:/BACKEND  # Condividi il codice con il backend
+  #   restart: always
 
-  redis:
-    image: redis:latest
-    container_name: redis-transcendence
-    ports:
-      - "6379:6379"
-    networks:
-      - ${NETWORK}
-    volumes:
-      - REDIS:/data
-      - ./redis.conf:/usr/local/etc/redis/redis.conf
-    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
-    mem_limit: 512m
-
-  daphne:
-    build: ./requirements/daphne/
-    container_name: daphne-transcendence
-    env_file:
-      - .env
-    depends_on:
-      - redis
-    networks:
-      - ${NETWORK}
-    ports:
-      - "8001:8001"
-    volumes:
-      - BACKEND:/BACKEND  # Condividi il codice con il backend
-    restart: always
-
- #------------------------------------------------MONITORING------------------------------------------------------->
- #--------------------------------------------------------------------------------------------------------------------->
-
+#------------------------------ MONITORING ------------------------------>
   prometheus:
     image: prom/prometheus
     container_name: prometheus-transcendence
     ports:
       - "127.0.0.1:9090:9090"
     networks:
-      - ${NETWORK}
+      - Transcendence_Network
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
@@ -123,7 +123,7 @@ services:
     image: prom/node-exporter
     container_name: node_exporter-transcendence
     networks:
-      - ${NETWORK}
+      - Transcendence_Network
     ports:
       - "127.0.0.1:9100:9100"
     deploy:
@@ -133,7 +133,7 @@ services:
     image: prometheuscommunity/postgres-exporter
     container_name: postgres_exporter-transcendence
     networks:
-      - ${NETWORK}
+      - Transcendence_Network
     env_file:
       - .env
     environment:
@@ -149,7 +149,7 @@ services:
     ports:
       - "127.0.0.1:3000:3000"
     networks:
-      - ${NETWORK}
+      - Transcendence_Network
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_AUTH_API_KEYS_ENABLED=true
@@ -173,8 +173,7 @@ services:
     deploy:
       replicas: ${DISABLE}
 
- #-------------------------------------------------------EFK STACK---------------------------------------------------------------
-
+#------------------------------ EFK STACK ------------------------------>
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.10.0
     container_name: elasticsearch-transcendence
@@ -186,26 +185,11 @@ services:
     ports:
       - "127.0.0.1:9200:9200"
     networks:
-      - ${NETWORK}
+      - Transcendence_Network
     volumes:
       - elasticsearch-volume:/usr/share/elasticsearch/data
     deploy:
       replicas: ${DISABLE}
-
-  kibana:
-    image: docker.elastic.co/kibana/kibana:8.9.0
-    container_name: kibana-transcendence
-    depends_on:
-      - elasticsearch
-    ports:
-      - "127.0.0.1:5601:5601"
-    volumes:
-      - ./kibana.yml:/usr/share/kibana/config/kibana.yml
-    networks:
-      - ${NETWORK}
-    deploy:
-      replicas: ${DISABLE}
-
 
   filebeat:
     image: docker.elastic.co/beats/filebeat:8.10.0
@@ -221,85 +205,86 @@ services:
     environment:
       - ELASTICSEARCH_HOST=http://elasticsearch:9200
     networks:
-      - ${NETWORK}
+      - Transcendence_Network
+    deploy:
+      replicas: ${DISABLE}
+  
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.9.0
+    container_name: kibana-transcendence
+    depends_on:
+      - elasticsearch
+    ports:
+      - "127.0.0.1:5601:5601"
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+    networks:
+      - Transcendence_Network
     deploy:
       replicas: ${DISABLE}
 
+#---------------------------------------------------------------------------> 
 
-############################################################################################################################
-############################################################################################################################
-
-############################################################################################################################
-################################################### VOLUMI FISICI ##########################################################
+#------------------------------ PHYSICAL VOLUMES ------------------------------>
 
 volumes:
-    prometheus-data:
-      name: Transcendence_prometheus_volume
+  prometheus-data:
+    name: Transcendence_prometheus_volume
 
-    grafana-storage:
-      name: Transcendence_grafana_volume
+  grafana-storage:
+    name: Transcendence_grafana_volume
+    driver: local
+    driver_opts:
+      device: ${HOME_NEW}/${PROJECT}/data/grafana-storage
+      o: bind
+      type: none
+
+  BACKEND:
+      name: Transcendence_backend_volume
       driver: local
       driver_opts:
-        device: ${HOME_NEW}/${PROJECT}/data/grafana-storage
+        device: ${HOME_NEW}/${PROJECT}/data/BACKEND
         o: bind
         type: none
 
-#---------------------------------------------------------------------------------------------------------------------------
-
-    BACKEND:
-       name: Transcendence_backend_volume
-       driver: local
-       driver_opts:
-          device: ${HOME_NEW}/${PROJECT}/data/BACKEND
-          o: bind
-          type: none
-
-#---------------------------------------------------------------------------------------------------------------------->
-
-    Transcendence_DB:
-        name: Transcendence_db_volume
-        driver: local
-        driver_opts:
-          device: ${HOME_NEW}/${PROJECT}/data/Transcendence_DB
-          o: bind
-          type: none
-
-#---------------------------------------------------------------------------------------------------------------------->
-
-    elasticsearch-volume:
-      name: Transcendence_elasticsearch_volume
+  Transcendence_DB:
+      name: Transcendence_db_volume
       driver: local
       driver_opts:
-        device: ${HOME_NEW}/${PROJECT}/data/elasticsearch-storage
+        device: ${HOME_NEW}/${PROJECT}/data/Transcendence_DB
         o: bind
         type: none
 
-#---------------------------------------------------------------------------------------------------------------------->
+  elasticsearch-volume:
+    name: Transcendence_elasticsearch_volume
+    driver: local
+    driver_opts:
+      device: ${HOME_NEW}/${PROJECT}/data/elasticsearch-storage
+      o: bind
+      type: none
 
-    filebeat-data:
-      name: Transcendence_filebeat_volume
-      driver: local
-      driver_opts:
-        device: ${HOME_NEW}/${PROJECT}/data/filebeat-data
-        o: bind
-        type: none
+  filebeat-data:
+    name: Transcendence_filebeat_volume
+    driver: local
+    driver_opts:
+      device: ${HOME_NEW}/${PROJECT}/data/filebeat-data
+      o: bind
+      type: none
 
-#---------------------------------------------------------------------------------------------------------------------->
+  NGINX:
+    name: Transcendence_nginx_volume
+    driver: local
+    driver_opts:
+      device: ${HOME_NEW}/${PROJECT}/data/NGINX
+      o: bind
+      type: none
 
-    NGINX:
-      name: Transcendence_nginx_volume
-      driver: local
-      driver_opts:
-        device: ${HOME_NEW}/${PROJECT}/data/NGINX
-        o: bind
-        type: none
+  # REDIS:
+  #   name: Transcendence_redis_volume
+  #   driver: local
+  #   driver_opts:
+  #     device: ${HOME_NEW}/${PROJECT}/data/REDIS
+  #     o: bind
+  #     type: none
 
-#---------------------------------------------------------------------------------------------------------------------->
-
-    REDIS:
-      name: Transcendence_redis_volume
-      driver: local
-      driver_opts:
-        device: ${HOME_NEW}/${PROJECT}/data/REDIS
-        o: bind
-        type: none
+#------------------------------------------------------------------------------>

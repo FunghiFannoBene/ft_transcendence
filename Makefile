@@ -1,19 +1,25 @@
-#### TARGETS ####
-# better readability + clearly indicates which targets are not associated with actual files
-.PHONY: all build down re remove_image echo own-backend venv check-migrate migrate database_login stop backend debug-backend nginx-reload nginx-rebuild rebuild-backend database_rebuild full-reset clean-all full-clean-all restart-container insert-grafana retrieve-grafana PUSH git-reset remove-gitcache
+########## TARGETS ##########
+# indicates targets not associated with actual files
+.PHONY: all start build down stop restart-container clean fclean re remove-imgs full-reset \
+		backend backend-build backend-up backend-rebuild backend-debug backend-check-migrate backend-migrate \
+		backend-venv backend-own backend-echo \
+		nginx-reload nginx-rebuild \
+		database-login database-rebuild \
+		grafana-insert grafana-retrieve \
+		git-push git-reset git-remove-cache
 
+# suppress command output for better readability
 .SILENT:
 
-### VARIABLES ###
-PROJECT_NAME = ft_transcendence
-COMPOSE =
-COMPOSE_PATH = srcs/docker-compose.yml
-# USER = shhuang
-USER = ${shell id -un} # detects user
 
-# detecting OS
+########## VARIABLES ##########
+# project and compose settings
+PROJECT_NAME = ft_transcendence
+COMPOSE_PATH = srcs/docker-compose.yml
+USER = ${shell id -un} # detect current user dynamically
+
+# OS decetion and compose command
 UNAME_S := ${shell uname -s}
-# adjust based on OS
 ifeq (${UNAME_S}, Darwin) # MacOS
     COMPOSE = docker compose
 	ADJUST_REQ = cp os-specific/requirements.mac.txt requirements.txt
@@ -26,58 +32,104 @@ else ifeq (${UNAME_S}, Linux) # Linux
 	ADJUST_REQ = cp os-specific/requirements.ubuntu.txt requirements.txt
 endif
 
-### RULES ###
+# docker volumes for cleanup
+DOCKER_VOLUMES= Transcendence_backend_volume Transcendence_db_volume Transcendence_elasticsearch_volume \
+				Transcendence_filebeat_volume Transcendence_grafana_volume Transcendence_nginx_volume \
+				Transcendence_prometheus_volume Transcendence_redis_volume
+
+
+########## RULES ##########
+### general/docker ###
 all: build
+
+start:
 	-@sudo service docker start
 
 build:
-	echo "${WHITE}Welcome to ${MAGENTA}${PROJECT_NAME} 🏓${DEF_COLOR}\n"
+	@echo "${WHITE}Welcome to ${MAGENTA}${PROJECT_NAME} 🏓${DEF_COLOR}\n"
 	sleep 1
 	${ADJUST_REQ}
-	echo "----------\n"\
+	@echo "----------\n"\
 	"${RED}Detecting OS...${WHITE} Seems like you're on ${GREEN}${UNAME_S}${WHITE}!\n"\
 	"Adjusting Makefile and requirements.txt to make sure everything runs smoothly.\n"\
 	"${YELLOW}It'll just take a sec ;P${DEF_COLOR}\n"\
 	"----------\n"
 	sleep 1
-	${COMPOSE} -f ${COMPOSE_PATH} -p ${PROJECT_NAME} up --build -d
+	${COMPOSE} -f ${COMPOSE_PATH} -p ${PROJECT_NAME} up --build
 
 down:
 	${COMPOSE} -f ${COMPOSE_PATH} -p ${PROJECT_NAME} down
-re:
-	${COMPOSE} -f ${COMPOSE_PATH} restart redis nginx backend daphne
-
-remove_image:
-	docker rmi ${docker images -q}
-
-echo:
-	echo ${BACKEND_DIR}
-
-own-backend:
-	sudo chown -R $(USER): ~/${PROJECT_NAME}/data/BACKEND
-
-venv:
-	source ~/${PROJECT_NAME}/data/BACKEND/venv/bin/activate
-
-check-migrate:
-	docker exec -it backend /root/venv/bin/python3 /${BACKEND_DIR}/${PROJECT_NAME}/manage.py makemigrations
-
-migrate:
-	docker exec -it backend /root/venv/bin/python3 /${BACKEND_DIR}/${PROJECT_NAME}/manage.py migrate
-
-database_login:
-	docker exec -it postgres bash psql -U ft_transcendence -d TRANSCENDENCE
 
 stop:
 	docker stop ${docker ps -q}
 
-backend:
-	${COMPOSE} -f ./srcs/docker-compose.yml build --progress plain backend &&
-	${COMPOSE} -f ./srcs/docker-compose.yml up -d backend
+restart-container:
+	@read -p "${CYAN}Enter the service name to restart: ${DEF_COLOR}" service_name; \
+	if docker compose -f ${COMPOSE_PATH} ps --services | grep -qw "$$service_name"; then \
+		@echo "${GREEN}Restarting service: $$service_name...${DEF_COLOR}"; \
+		docker compose -f ${COMPOSE_PATH} rm -f $$service_name; \
+		docker compose -f ${COMPOSE_PATH} up -d --no-deps $$service_name; \
+		@echo "${YELLOW}Service $$service_name restarted successfully.${DEF_COLOR}"; \
+	else \
+		@echo "${RED}Error: Service '$$service_name' does not exist.${DEF_COLOR}"; \
+	fi
 
-debug-backend:
+clean: down
+	@echo "${YELLOW}Cleaning up containers, networks, and volumes...${DEF_COLOR}"
+	@if [ -n "$$(docker ps -a -q)" ]; then docker rm $$(docker ps -a -q); fi
+	docker network prune -f
+	docker volume rm ${DOCKER_VOLUMES}
+
+full-reset:
+	docker system prune -a --volumes
+
+fclean: down
+	@echo "${RED}Performing a full reset, including system prune.${DEF_COLOR}"
+	@if [ -n "$$(docker ps -a -q)" ]; then docker rm $$(docker ps -a -q); fi
+	docker network prune -f
+	docker system prune -a --volumes
+	docker volume rm ${DOCKER_VOLUMES}
+
+re:
+	${COMPOSE} -f ${COMPOSE_PATH} restart redis nginx backend daphne
+
+remove-imgs:
+	docker rmi ${docker images -q}
+
+### backend ###
+backend: backend-build backend-up
+
+backend-build:
+	${COMPOSE} -f ${COMPOSE_PATH} build --progress plain backend
+
+backend-up:
+	${COMPOSE} -f ${COMPOSE_PATH} up -d backend
+
+backend-rebuild:
+	${COMPOSE} -f ${COMPOSE_PATH} stop backend && \
+	${COMPOSE} -f ${COMPOSE_PATH} rm -f backend && \
+	${COMPOSE} -f ${COMPOSE_PATH} build backend && \
+	${COMPOSE} -f ${COMPOSE_PATH} up -d backend
+
+backend-debug:
 	docker run -it --entrypoint bash -v ~/$(PROJECT_NAME)/data/BACKEND:/django srcs-backend
 
+backend-check-migrate:
+	docker exec -it backend /root/venv/bin/python3 /${BACKEND_DIR}/${PROJECT_NAME}/manage.py makemigrations
+
+backend-migrate:
+	docker exec -it backend /root/venv/bin/python3 /${BACKEND_DIR}/${PROJECT_NAME}/manage.py migrate
+
+backend-venv:
+	@source ~/${PROJECT_NAME}/data/BACKEND/venv/bin/activate
+
+backend-own:
+	sudo chown -R $(USER): ~/${PROJECT_NAME}/data/BACKEND
+
+backend-echo:
+	@echo ${BACKEND_DIR}
+
+### nginx ###
 nginx-reload:
 	docker exec -it nginx nginx -s reload
 
@@ -87,65 +139,43 @@ nginx-rebuild:
 	${COMPOSE} -f ${COMPOSE_PATH} build nginx && \
 	${COMPOSE} -f ${COMPOSE_PATH} up -d nginx
 
-rebuild-backend:
-	${COMPOSE} -f ${COMPOSE_PATH} stop backend && \
-	${COMPOSE} -f ${COMPOSE_PATH} rm -f backend && \
-	${COMPOSE} -f ${COMPOSE_PATH} build backend && \
-	${COMPOSE} -f ${COMPOSE_PATH} up -d backend
+### database ###
+database-login:
+	@echo "${GREEN}Logging into PostgreSQL database...${DEF_COLOR}"
+	docker exec -it postgres bash psql -U ft_transcendence -d TRANSCENDENCE
 
-database_rebuild:
-	docker compose -f ./srcs/docker-compose.yml build --progress plain postgres && docker compose -f ./srcs/docker-compose.yml up -d postgres
+database-rebuild:
+	@echo "${YELLOW}Database container rebuilt successfully.${DEF_COLOR}"
+	docker compose -f ./${COMPOSE_PATH} build --progress plain postgres && docker compose -f ./${COMPOSE_PATH} up -d postgres
 
-full-reset:
-	docker system prune -a --volumes
-
-clean-all: down
-	-docker rm ${docker ps -a -q}
-	-docker network prune -f -y
-	-docker volume rm ${DOCKER_VOLUMES}
-
-full-clean-all: down
-	-docker rm ${docker ps -a -q}
-	-docker network prune -f -y
-	-docker system prune -a --volumes
-	-docker volume rm ${DOCKER_VOLUMES}
-
-restart-container:
-	@read -p "Inserisci il nome del servizio da riavviare: " service_name; \
-	if docker compose -f srcs/docker-compose.yml ps --services | grep -qw "$$service_name"; then \
-		echo "Riavvio del servizio: $$service_name..."; \
-		docker compose -f srcs/docker-compose.yml rm -f $$service_name; \
-		docker compose -f srcs/docker-compose.yml up -d --no-deps $$service_name; \
-		echo "Servizio $$service_name riavviato con successo."; \
-	else \
-		echo "Errore: Il servizio '$$service_name' non esiste."; \
-	fi
-
-### GRAFANA ###
-insert-grafana:
-	@echo "Questo comando sovrascriverà il database corrente di Grafana. Scrivi YES per confermare:"
-	@read confirmation && [ "$$confirmation" = "YES" ] || (echo "Operazione annullata" && exit 1)
+### grafana ###
+grafana-insert:
+	@echo "${RED}This will overwrite the current Grafana database. Type YES to confirm:${DEF_COLOR}"
+	@read confirmation && [ "$$confirmation" = "YES" ] || (echo "${YELLOW}Operation cancelled.${DEF_COLOR}" && exit 1)
 	chmod 777 ./grafana.db
 	docker cp ./grafana.db grafana:/var/lib/grafana/grafana.db
 	docker restart grafana
-	@echo "Database inserito con successo e container riavviato."
+	@echo "${GREEN}Database successfully inserted and container restarted.${DEF_COLOR}"
 
-retrieve-grafana:
+grafana-retrieve:
 	@GRAFANA_TOKEN=$$(grep GRAFANA_TOKEN ./srcs/.env | cut -d '=' -f2) ;\
 	docker cp grafana:/var/lib/grafana/grafana.db ./grafana.db ;\
-	echo "Database corrente recuperato e salvato come ./grafana.db" ;\
+	@echo "${GREEN}Current database retrieved and saved as ./grafana.db${DEF_COLOR}"
 
-### GIT ###
-push:
-	git add . && git commit -m fastpush && git push
+### git ###
+git-push:
+	@git add . && \
+	@git commit -m fastpush && \
+	@git push
 
 git-reset:
-	git reset --hard origin/master
+	@git reset --hard origin/master
 
-remove-gitcache:
-	git rm -r --cached .
+git-remove-cache:
+	@git rm -r --cached .
 
-### COLORS ###
+
+######### COLORS ##########
 DEF_COLOR = \033[0;39m
 BLACK = \033[1;90m
 RED = \033[1;91m

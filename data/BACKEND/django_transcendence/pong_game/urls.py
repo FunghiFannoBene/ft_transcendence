@@ -4,6 +4,7 @@ from . import views
 # Add your URLs here.
 urlpatterns = [
 	path('', views.home, name='home'),
-    path('access_menu/', views.access_menu, name='access_menu'),
-    path('game_menu/', views.game_menu, name='game_menu'),
+    path('login_form/', views.login_form, name='login_form'),
+    path('signup_form/', views.signup_form, name='signup_form'),
+    path('profile/', views.signup_form, name='profile'),
 ]
