@@ -5,7 +5,6 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-
 	<title>transcendence</title>
 
 	<!-- bootstrap -->
@@ -61,11 +60,12 @@
 			</div>
 
 			<!-- Placeholder for dynamic main content -->
-			<div class="d-xxl-flex flex-column justify-content-xxl-center align-items-xxl-center" id="dynamic-content">
-				<!--
-				{% block content %}
-				{% endblock %}
-				-->
+			<div
+				class="d-xxl-flex flex-column justify-content-xxl-center align-items-xxl-center"
+				id="dynamic-content"
+				data-script="{% static 'js/home.js' %}"
+			>
+				<!-- Content will be injected dynamically -->
 			</div>
 		</div>
 
@@ -74,149 +74,17 @@
 	</main>
 
 	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-	<!-- <script src="{% static 'js/spa.js' %}" type="module" defer></script> -->
-	 <script>
-		function initializeSPA() {
-		window.addEventListener("popstate", handleRoute);
-		handleRoute(); // load initial content
-		}
 
-		function setupNavigation(buttonSelector) {
-		const buttons = document.querySelectorAll(buttonSelector);
-		buttons.forEach((button) => {
-			button.addEventListener("click", function (event) {
-			event.preventDefault();
-			const url = this.getAttribute("data-route");
-			console.log(`Navigating to: ${url}`);
-			navigateTo(url);
-			});
+	<script type="module">
+		import { initializeSPA } from '{% static "js/spa.js" %}';
+		
+		document.addEventListener('DOMContentLoaded', function() {  
+		  initializeSPA();
 		});
-		}
 
-		function navigateTo(url) {
-		history.pushState(null, null, url);
-		handleRoute();
-		}
-
-		function handleRoute() {
-		const path = window.location.pathname;
-		console.log(`handleRoute called with path: ${path}`);
-
-		// Target divs for injecting content
-		const contentDiv = document.getElementById("dynamic-content");
-
-		fetch(path, {
-			headers: {
-			"X-Requested-With": "XMLHttpRequest",
-			},
-		})
-			.then((response) => response.json())
-			.then((data) => {
-			// inject each block's content separately
-			contentDiv.innerHTML = data.content || "";
-
-			// re-attach event listeners for newly injected content if needed
-			setupNavigation("[data-route]");
-			})
-			.catch((error) => console.error("Error loading content:", error));
-		}
-
-		// note: functions also for lang.js
-		function loadTranslations(lang) {
-		return fetch(`/static/translations/${lang}.json`)
-			.then(response => response.json())
-			.then(translations => {
-			localStorage.setItem("translations", JSON.stringify(translations));
-			applyTranslations(translations);
-			})
-			.catch(error => console.error("Error loading translations:", error));
-		}
-
-		function applyTranslations(translations) {
-		document.querySelectorAll("[data-translate-key]").forEach((element) => {
-			const key = element.getAttribute("data-translate-key");
-			if (translations[key]) {
-			element.innerHTML = translations[key];
-			}
+		window.addEventListener("load", function() {
+			console.log("✅ Tutte le risorse sono state caricate!");
 		});
-		}
-	 </script>
-	<!-- <script src="{% static 'js/home.js' %}" type="module" defer></script> -->
-	<script>
-		function initializeSPA() {
-		window.addEventListener("popstate", handleRoute);
-		handleRoute(); // load initial content
-		}
-
-		function setupNavigation(buttonSelector) {
-		const buttons = document.querySelectorAll(buttonSelector);
-		buttons.forEach((button) => {
-			button.addEventListener("click", function (event) {
-			event.preventDefault();
-			const url = this.getAttribute("data-route");
-			console.log(`Navigating to: ${url}`);
-			navigateTo(url);
-			});
-		});
-		}
-		document.addEventListener('DOMContentLoaded', function() {
-			setupNavigation('#btn-login');
-			setupNavigation('#btn-signup');
-
-			const loginButton = document.getElementById("submit-login");
-			const loginForm = document.getElementById("login-form");
-
-		// Set up event listener for the login button click
-		if (loginButton) {
-			loginButton.addEventListener("click", function (event) {
-			console.log("click");
-			event.preventDefault(); // Prevent any default behavior of the button
-
-			// Get user input (username and password)
-			const username = document.getElementById("username").value;
-			const password = document.getElementById("password").value;
-
-			// Validate input (optional)
-			if (!username || !password) {
-				console.error("Both username and password are required.");
-				return;
-			}
-
-			// Send POST request to the login API endpoint
-			fetch("/api/login/", {
-				method: "POST",
-				headers: {
-				"Content-Type": "application/json",
-				"X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
-					.value, // CSRF token for security
-				},
-				body: JSON.stringify({
-				username: username,
-				password: password,
-				}),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-				if (data.message === "Login successful") {
-					// Use the SPA's navigateTo function to load the profile page instead of reloading
-					// navigateTo("/profile");
-				} else {
-					// Handle login failure (display error message)
-					console.error("Login failed:", data.error);
-					alert("Invalid username or password.");
-				}
-				})
-				.catch((error) => {
-				// Handle any errors during the request
-				console.error("Error during login request:", error);
-				});
-			});
-		}
-
-			initializeSPA();
-		});
-	</script>
-	<script src="{% static 'js/login_form.js' %}" type="module" defer></script>
-	<script src="{% static 'js/signup_form.js' %}" type="module" defer></script>
+	  </script>
 </body>
 </html>

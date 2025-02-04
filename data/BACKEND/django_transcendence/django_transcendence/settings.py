@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os, environ # note: environ is for environment variables management
+from urllib.parse import urlparse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,12 +33,25 @@ SECRET_KEY = env('SECRET_KEY', default='django-insecure-)g4-0v+%z*#nwa=k%-5)#k+o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=True)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1', 
+    '0.0.0.0',
+    'nginx',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Origine del frontend
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
+    'rest_framework_simplejwt',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,10 +62,51 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'rest_framework',
+    'allauth.socialaccount.providers.oauth2',
     'rest_framework.authtoken',  # Add this line
+    'dj_rest_auth.registration',
     'dj_rest_auth',
     'pong_game',
+    'users',
+    'corsheaders',
+    'django_extensions',
+]
+
+SOCIALACCOUNT_AUTO_SIGNUP = False
+
+SOCIALACCOUNT_PROVIDERS = {
+    'fortytwo': {
+        'SCOPE': ['public'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+    }
+}
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+    "https://localhost",
+    "https://127.0.0.1",
+    "http://127.0.0.1",
+    "https://tunnel",
+    "http://0.0.0.0",
+    "https://nginx",
+    "http://nginx",
+]
+
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-requested-with',
+    "x-csrftoken",
+    'accept',
+    'origin',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
 # 42 Login
@@ -83,6 +138,41 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',  # Rende l'API solo JSON
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',  # Per i template Django
+        'rest_framework.authentication.BasicAuthentication',    # Per autenticazione base (opzionale)
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # Per il login via API
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',  # Limita l'accesso alle API agli utenti autenticati
+    ],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+}
+
+from datetime import timedelta
+
+LOGIN_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_USERNAME_REQUIRED = False
+
+LOGIN_REDIRECT_URL = '/'
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_NAME = "csrftoken"
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),  # Durata del token
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),  # Durata del refresh token
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
+
 ROOT_URLCONF = 'django_transcendence.urls'
 
 TEMPLATES = [
@@ -107,23 +197,25 @@ WSGI_APPLICATION = 'django_transcendence.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': env('POSTGRES_DB'),
-#         'USER': env('POSTGRES_USER'),
-#         'PASSWORD': env('POSTGRES_PASSWORD'),
-#         'HOST': env('POSTGRES_HOST', default='localhost'),
-#         'PORT': env('POSTGRES_PORT', default='5432'),
-#     }
-# }
+DATABASES_URL = env.db_url('DATABASE_URL')
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "mydatabase",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('POSTGRES_DB'),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': env('POSTGRES_HOST', default='localhost'),
+        'PORT': env('POSTGRES_PORT', default='5432'),
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": "mydatabase",
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -158,8 +250,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, '/staticfiles')
+STATIC_URL = '/static/'
 
-STATIC_URL = 'static/'
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'pong_game/static'),  # Adjusted to point to your pong_game/static directory
+#]
+STATICFILES_DIRS = [
+
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

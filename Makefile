@@ -21,7 +21,7 @@ USER = ${shell id -un} # detect current user dynamically
 # OS decetion and compose command
 UNAME_S := ${shell uname -s}
 ifeq (${UNAME_S}, Darwin) # MacOS
-    COMPOSE = docker compose
+    COMPOSE = docker-compose
 	ADJUST_REQ = cp os-specific/requirements.mac.txt requirements.txt
 else ifeq (${UNAME_S}, Linux) # Linux
 	ifeq (${shell test -d /nfs/homes/ && echo -n yes},yes)
@@ -40,7 +40,19 @@ DOCKER_VOLUMES= Transcendence_backend_volume Transcendence_db_volume Transcenden
 
 ########## RULES ##########
 ### general/docker ###
+OS := $(shell uname)
+
 all: build
+ifeq ($(OS), Darwin)  # macOS
+	@echo "Rilevato macOS. Avvio Docker Desktop..."
+	#open -a Docker
+else ifeq ($(OS), Linux)  # Linux
+	@echo "Rilevato Linux. Avvio il servizio Docker..."
+	-@sudo service docker start
+else
+	@echo "Sistema operativo non supportato!"
+	exit 1
+endif
 
 start:
 	-@sudo service docker start
@@ -55,7 +67,7 @@ build:
 	"${YELLOW}It'll just take a sec ;P${DEF_COLOR}\n"\
 	"----------\n"
 	sleep 1
-	${COMPOSE} -f ${COMPOSE_PATH} -p ${PROJECT_NAME} up --build
+	${COMPOSE} -f ${COMPOSE_PATH} -p ${PROJECT_NAME} up --build -d
 
 down:
 	${COMPOSE} -f ${COMPOSE_PATH} -p ${PROJECT_NAME} down
@@ -91,7 +103,14 @@ fclean: down
 	docker volume rm ${DOCKER_VOLUMES}
 
 re:
-	${COMPOSE} -f ${COMPOSE_PATH} restart redis nginx backend daphne
+	${COMPOSE} -f ${COMPOSE_PATH} -p ${PROJECT_NAME} restart redis nginx backend daphne
+
+#ELIMINAMI
+collect:
+	${COMPOSE} -f ${COMPOSE_PATH} -p ${PROJECT_NAME} exec backend /root/venv/bin/python BACKEND/django_transcendence/manage.py collectstatic --noinput --clear
+
+ps:
+	${COMPOSE} -f ${COMPOSE_PATH} -p ${PROJECT_NAME} ps
 
 remove-imgs:
 	docker rmi ${docker images -q}

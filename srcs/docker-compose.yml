@@ -53,6 +53,8 @@ services:
     build: ./requirements/postgres/
     volumes:
       - Transcendence_DB:/var/lib/postgresql/data
+      - ./postgres-config/postgresql.conf:/etc/postgresql/postgresql.conf  # File di configurazione personalizzato
+      - ./postgres-config/pg_hba.conf:/etc/postgresql/pg_hba.conf  # File di autenticazione personalizzato # File di configurazione pg_hba.conf
     env_file:
       - .env
     networks:
@@ -63,6 +65,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+    command: ["postgres", "-c", "config_file=/var/lib/postgresql/data/postgresql.conf"]  # Specifica il file di configurazione
     restart: always
 
   adminer:
@@ -236,6 +239,14 @@ volumes:
     driver: local
     driver_opts:
       device: ${HOME_NEW}/${PROJECT}/data/grafana-storage
+      o: bind
+      type: none
+
+  postgres-data:
+    name: Transcendence_postgres_volume
+    driver: local
+    driver_opts:
+      device: ${HOME_NEW}/${PROJECT}/data/postgres-storage
       o: bind
       type: none
 

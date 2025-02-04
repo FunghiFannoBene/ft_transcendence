@@ -30,7 +30,7 @@ def login_form(request):
         })
 
     # for a full-page load
-    return render(request, 'login_form.html')
+    return render(request, 'base.html')
 
 def signup_form(request):
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
@@ -42,7 +42,7 @@ def signup_form(request):
         })
 
     # for a full-page load
-    return render(request, 'signup_form.html')
+    return render(request, 'base.html')
 
 def profile(request):
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
@@ -54,4 +54,4 @@ def profile(request):
         })
 
     # for a full-page load
-    return render(request, 'profile.html')
+    return render(request, 'base.html')

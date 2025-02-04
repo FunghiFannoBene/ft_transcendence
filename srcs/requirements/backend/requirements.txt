@@ -23,3 +23,6 @@ asgiref
 twisted[tls,http2]
 colorlog
 django-environ
+djangorestframework-simplejwt
+django-cors-headers
+django-extensions

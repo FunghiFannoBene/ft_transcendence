@@ -16,10 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # Adds allauth URLs
     path('', include('pong_game.urls')),  # include the pong_game URLs
     path('', include('authentication.urls')),  # include the CSRF URLs
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Login API (JWT)
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
