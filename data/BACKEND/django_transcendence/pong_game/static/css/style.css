@@ -1,0 +1,26 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.main-container {
+  background-color: #2c2c2c;
+}
+
+#game-container {
+  background-color: #000000;
+}
+
+.player-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-btn {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 50px;
+  max-height: 50px;
+}

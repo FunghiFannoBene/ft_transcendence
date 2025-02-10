@@ -20,10 +20,10 @@ def home(request):
     # For a full-page load, render the entire base template
     return render(request, 'base.html')
 
-def login_form(request):
+def pong_game(request):
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         # Render only specific blocks based on context flags
-        content_html = render_to_string('login_form.html', {'only_content': True}, request=request)
+        content_html = render_to_string('game_menu.html', {'only_content': True}, request=request)
 
         return JsonResponse({
             'content': content_html,
@@ -32,17 +32,29 @@ def login_form(request):
     # for a full-page load
     return render(request, 'base.html')
 
-def signup_form(request):
-    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        # Render only specific blocks based on context flags
-        content_html = render_to_string('signup_form.html', {'only_content': True}, request=request)
+# def login_form(request):
+#     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+#         # Render only specific blocks based on context flags
+#         content_html = render_to_string('login_form.html', {'only_content': True}, request=request)
 
-        return JsonResponse({
-            'content': content_html,
-        })
+#         return JsonResponse({
+#             'content': content_html,
+#         })
 
-    # for a full-page load
-    return render(request, 'base.html')
+#     # for a full-page load
+#     return render(request, 'base.html')
+
+# def signup_form(request):
+#     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+#         # Render only specific blocks based on context flags
+#         content_html = render_to_string('signup_form.html', {'only_content': True}, request=request)
+
+#         return JsonResponse({
+#             'content': content_html,
+#         })
+
+#     # for a full-page load
+#     return render(request, 'base.html')
 
 def profile(request):
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':

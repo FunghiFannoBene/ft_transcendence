@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="{% static 'css/btn-lang.css' %}">
 	<link rel="stylesheet" href="{% static 'css/home.css' %}">
 	<link rel="stylesheet" href="{% static 'css/login-icons.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<!-- fonts -->
 	<link rel="stylesheet" href="{% static 'css/VersaVersa.css' %}">
 	<link rel="stylesheet" href="{% static 'css/Quantico.css' %}">
@@ -52,6 +53,7 @@
 						</svg>
 						english
 					</button>
+					<div id="auth-btn-container"></div>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="#" id="lang-option-one">italian</a>
 						<a class="dropdown-item" href="#" id="lang-option-two">korean</a>
@@ -86,5 +88,6 @@
 			console.log("✅ Tutte le risorse sono state caricate!");
 		});
 	  </script>
+	  <script src="{% static 'js/auth.js' %}"></script>
 </body>
 </html>

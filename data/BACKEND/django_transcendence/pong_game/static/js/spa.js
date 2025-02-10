@@ -75,7 +75,8 @@ export async function handleRoute() {
   // Verifica se lo script è già caricato
   const scriptSrc = `/static/js/${page}.js`;
 
-  await loadJS("/static/js/login_form.js");
+  await loadJS("/static/js/home.js");
+  await loadJS("/static/js/auth.js");
 
 }
 

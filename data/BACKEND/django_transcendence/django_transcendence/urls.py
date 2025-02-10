@@ -22,7 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # Adds allauth URLs
     path('', include('pong_game.urls')),  # include the pong_game URLs
-    path('', include('authentication.urls')),  # include the CSRF URLs
+    path('', include('oauth2.urls')),  # include the OAuth2 URLs
+    # path('', include('authentication.urls')),  # include the CSRF URLs
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Login API (JWT)
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

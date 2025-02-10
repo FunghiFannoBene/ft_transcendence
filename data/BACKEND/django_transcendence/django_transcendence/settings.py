@@ -27,6 +27,12 @@ environ.Env.read_env(os.path.join(BASE_DIR.parent.parent.parent / '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
+CLIENT_ID = env("CLIENT_ID")
+CLIENT_SECRET = env("CLIENT_SECRET")
+REDIRECT_URI = env("REDIRECT_URI")
+AUTH_URL = env("AUTHORIZATION_URL")
+TOKEN_URL = env("TOKEN_URL")
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY', default='django-insecure-)g4-0v+%z*#nwa=k%-5)#k+o*z2e^k--@+uf&^k#ms*ioiyfc_')
 
@@ -40,11 +46,11 @@ ALLOWED_HOSTS = [
     'nginx',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Origine del frontend
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:5173",  # Origine del frontend
+#     "http://localhost:8000",
+#     "http://127.0.0.1:8000",
+# ]
 
 
 # Application definition
@@ -62,14 +68,13 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.oauth2',
     'rest_framework.authtoken',  # Add this line
     'dj_rest_auth.registration',
     'dj_rest_auth',
     'pong_game',
-    'users',
     'corsheaders',
     'django_extensions',
+    'oauth2',
 ]
 
 SOCIALACCOUNT_AUTO_SIGNUP = False
@@ -81,16 +86,17 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-    "https://localhost",
-    "https://127.0.0.1",
-    "http://127.0.0.1",
-    "https://tunnel",
-    "http://0.0.0.0",
-    "https://nginx",
-    "http://nginx",
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "http://localhost:5173",
+#     "https://localhost",
+#     "https://127.0.0.1",
+#     "http://127.0.0.1",
+#     "https://tunnel",
+#     "http://0.0.0.0",
+#     "https://nginx",
+#     "http://nginx",
+#     "http://localhost:8000",
+# ]
 
 
 CORS_ALLOW_CREDENTIALS = True
@@ -136,7 +142,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
@@ -161,17 +170,16 @@ LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_USERNAME_REQUIRED = False
 
 LOGIN_REDIRECT_URL = '/'
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_SAMESITE = 'None'
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = 'None'
-CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = 'Lax'
 
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),  # Durata del token
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),  # Durata del refresh token
-    "AUTH_HEADER_TYPES": ("Bearer",),
-}
+# SIMPLE_JWT = {
+#     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),  # Durata del token
+#     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),  # Durata del refresh token
+#     "AUTH_HEADER_TYPES": ("Bearer",),
+# }
 
 ROOT_URLCONF = 'django_transcendence.urls'
 
