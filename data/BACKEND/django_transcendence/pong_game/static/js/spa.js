@@ -1,6 +1,14 @@
 export function initializeSPA() {
-  window.addEventListener("load", handleRoute);
-  window.addEventListener("popstate", handleRoute);
+  window.addEventListener("load", () => {
+    handleRoute();
+    observeDOMChanges();
+    setTimeout(checkAuth, 200);
+  });
+  window.addEventListener("popstate", () => {
+    handleRoute();
+    observeDOMChanges();
+    setTimeout(checkAuth, 200);
+  });
   console.log("🚀 SPA initialized!");
   // handleRoute(); // Chiamata iniziale per il primo caricamento
 }
@@ -41,84 +49,131 @@ async function fetchContent(path) {
       console.error("Error fetching content:", error);
       return null;  // Ritorna `null` in caso di errore per evitare crash
   }
-  console.log("Content fetched");
 }
 
 export async function handleRoute() {
   const path = window.location.pathname;
-  console.log(`handleRoute called with path: ${path}`);
-  const cleanPath = path.endsWith('/') ? path.slice(0, -1) : path;  
+  console.log(`handleRoute chiamato con path: ${path}`);
 
-  // Target divs for injecting content
   const contentDiv = document.getElementById("dynamic-content");
-
   const data = await fetchContent(path);
 
   if (data) {
     contentDiv.innerHTML = data.content || "";
-    // document.dispatchEvent(new Event("spaContentLoaded"));
   } else {
     console.error("❌ Errore nel caricamento del contenuto, impossibile aggiornare il DOM.");
     return;
   }
-  // Estrazione del nome della pagina (l'ultimo segmento del percorso)
-  let page = cleanPath.split('/').filter(Boolean).pop(); // Estrai l'ultimo segmento
 
-  // Se il percorso è vuoto (root "/"), assegna 'home' come nome della pagina
-  if (!page) {
-    page = 'home';
-  }
-
-  // re-attach event listeners for newly injected content if needed
   setupNavigation("[data-route]");
 
-  // Verifica se lo script è già caricato
-  const scriptSrc = `/static/js/${page}.js`;
+  const scriptsToLoad = [];
 
-  await loadJS("/static/js/home.js");
-  await loadJS("/static/js/auth.js");
-
-}
-
-export function isScriptLoaded(scriptSrc) {
-  return document.querySelector(`script[src="${scriptSrc}"]`) !== null;
-}
-
-export function loadJS(scriptSrc) {
-  if (!scriptSrc) {
-    console.error("Error: scriptSrc is empty or undefined.");
-    return Promise.reject(new Error("scriptSrc is empty or undefined."));
+  if (path.includes("/")) {
+    scriptsToLoad.push({ src: "/static/js/auth.js", isModule: false });
+    scriptsToLoad.push({ src: "/static/js/login.js", isModule: false });
+    scriptsToLoad.push({ src: "/static/js/logout.js", isModule: false });
   }
-  console.log(`Loading script: ${scriptSrc}`);
 
+  if (path.includes("pong_game")) {
+    scriptsToLoad.push({ src: "/static/js/auth.js", isModule: false });
+    scriptsToLoad.push({ src: "/static/js/pong_menu.js", isModule: true });
+    scriptsToLoad.push({ src: "/static/js/script.js", isModule: false });
+  }
+
+  console.log(`📜 Script da ricaricare:`, scriptsToLoad);
+
+  try {
+    // Rimuove gli script esistenti prima di ricaricarli
+    removeExistingScripts(scriptsToLoad.map(s => s.src));
+
+    // Ricarica gli script
+    await Promise.all(
+      scriptsToLoad.map(({ src, isModule }) => loadJS(src, isModule))
+    );
+
+    console.log("✅ Tutti gli script sono stati ricaricati con successo.");
+  } catch (error) {
+    console.error("❌ Errore nel ricaricamento degli script:", error);
+  }
+}
+
+
+// export function isScriptLoaded(scriptSrc) {
+//   return document.querySelector(`script[src="${scriptSrc}"]`) !== null;
+// }
+
+export function loadJS(scriptSrc, isModule = false) {
   return new Promise((resolve, reject) => {
-    console.log(`Promise script: ${scriptSrc}`);
     if (!scriptSrc) {
-      reject(new Error("❌ scriptSrc is empty or undefined."));
-      return; // Interrompe la Promise subito
+      reject(new Error("❌ scriptSrc è vuoto o indefinito."));
+      return;
     }
-  
-    if (!document.head) {
-      reject(new Error("❌ document.head is not available."));
-      return; // Evita di eseguire codice inutile
-    }
-  
+
+    console.log(`⬇️ Caricamento script: ${scriptSrc}`);
+
     const script = document.createElement("script");
     script.src = scriptSrc;
-  
+    script.async = true;
+    if (isModule) script.type = "module";
+
     script.onload = () => {
-      console.log(`✅ Script loaded successfully: ${scriptSrc}`);
-      resolve();  // La Promise è completata con successo
+      console.log(`✅ Script caricato con successo: ${scriptSrc}`);
+      resolve();
     };
-  
+
     script.onerror = (error) => {
-      console.error(`❌ Error loading script: ${scriptSrc}`, error);
-      reject(new Error(`Failed to load script: ${scriptSrc}`));
+      console.error(`❌ Errore nel caricamento dello script: ${scriptSrc}`, error);
+      reject(new Error(`Errore nel caricamento dello script: ${scriptSrc}`));
     };
-  
-    document.head.appendChild(script);  // Aggiungiamo lo script solo se tutto è OK
+
+    document.head.appendChild(script);
   });
 }
+
+
+function observeDOMChanges() {
+  const observer = new MutationObserver(async (mutations, obs) => {
+    // Disattiva temporaneamente l'osservazione per evitare loop infiniti
+    obs.disconnect();
+
+    let shouldReloadScripts = false;
+
+    for (const mutation of mutations) {
+      if (mutation.addedNodes.length > 0) {
+        console.log("🔄 Modifica rilevata nel DOM.");
+        shouldReloadScripts = true;
+      }
+    }
+
+
+    // Riattiva l'osservazione solo dopo aver caricato gli script
+    setTimeout(() => {
+      obs.observe(document.getElementById("dynamic-content"), {
+        childList: true,
+        subtree: true,
+      });
+    }, 200); // Evita di riattivarlo immediatamente per prevenire loop
+  });
+
+  observer.observe(document.getElementById("dynamic-content"), {
+    childList: true,
+    subtree: true,
+  });
+
+  console.log("👀 MutationObserver attivato!");
+}
+
+function removeExistingScripts(scriptSrcList) {
+  scriptSrcList.forEach(src => {
+    const existingScript = document.querySelector(`script[src="${src}"]`);
+    if (existingScript) {
+      console.log(`🗑️ Rimuovo script: ${src}`);
+      existingScript.remove();
+    }
+  });
+}
+
 
 // note: functions also for lang.js
 // export function loadTranslations(lang) {

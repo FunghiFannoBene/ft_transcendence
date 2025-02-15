@@ -31,32 +31,75 @@
   border-radius: 4px;
 }
 
-#btn-login:hover {
-  box-shadow: 0px 0px 0 #000;
-  transform: translate(3px, 4px);
-}
-
-#btn-signup:hover {
-  box-shadow: 0px 0px 0 #000;
-  transform: translate(3px, 4px);
-}
-
-#icon-controller-sx {
-  font-size: 16px;
-  height: 30px;
-  width: 30px;
-  margin-right: 7px;
-}
-
-#icon-ping-pong {
-  font-size: 16px;
-  width: 30px;
-  height: 30px;
-  margin-right: 7px;
-}
-
+#icon-controller-sx,
+#icon-ping-pong,
 #icon-controller-dx {
   font-size: 16px;
   width: 30px;
   height: 30px;
+  margin-right: 7px;
+}
+
+/* Media Queries per dispositivi con schermi più piccoli */
+@media (max-width: 1024px) {
+  #prompt-play {
+    font-size: 40px; /* Riduci la dimensione del testo per tablet */
+  }
+
+  #btn-oauth,
+  #btn-signup {
+    width: 250px;
+    height: 60px;
+    font-size: 18px;
+  }
+
+  #icon-controller-sx,
+  #icon-ping-pong,
+  #icon-controller-dx {
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  #prompt-play {
+    font-size: 35px; /* Riduci ulteriormente il testo per dispositivi mobili */
+  }
+
+  #btn-oauth,
+  #btn-signup {
+    width: 220px;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  #icon-controller-sx,
+  #icon-ping-pong,
+  #icon-controller-dx {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  #prompt-play {
+    font-size: 30px; /* Ancora più piccolo su schermi molto piccoli */
+  }
+
+  #btn-oauth,
+  #btn-signup {
+    width: 200px;
+    height: 45px;
+    font-size: 14px;
+  }
+
+  #icon-controller-sx,
+  #icon-ping-pong,
+  #icon-controller-dx {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+  }
 }

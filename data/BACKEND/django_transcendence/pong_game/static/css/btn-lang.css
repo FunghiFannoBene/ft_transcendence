@@ -7,25 +7,47 @@
   font-family: "Versa Versa";
 }
 
-/* not working */
 #btn-lang:active {
-  border: none;
+  border: none !important;
 }
 
 .dropdown-menu {
   background: rgb(0, 0, 0);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  transition: box-shadow 0.3s ease;
 }
 
-/* language options */
+.dropdown-menu:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Language options */
 .dropdown-item {
   color: #fff;
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .dropdown-item:hover {
   background-color: transparent;
-  color: #c32606;
 }
 
 .dropdown-item:active {
   background-color: transparent;
+}
+
+@media screen and (max-width: 768px) {
+  #btn-lang {
+    margin-right: 50px;
+  }
+}
+
+#btn-lang:hover {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+#btn-lang:focus {
+  outline: none;
 }

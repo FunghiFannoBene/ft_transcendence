@@ -1,8 +1,10 @@
 @font-face {
 	font-family: 'Versa Versa';
 	src: url(../fonts/VersaVersa.woff2) format('woff2'),
-	url(../fonts/VersaVersa.woff) format('woff');
+		 url(../fonts/VersaVersa.woff) format('woff'),
+		 url(../fonts/VersaVersa.ttf) format('truetype'); /* Aggiunto il formato TTF per maggiore compatibilità */
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
-}
+  }
+  

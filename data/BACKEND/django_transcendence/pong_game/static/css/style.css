@@ -1,21 +1,26 @@
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 .main-container {
   background-color: #2c2c2c;
+  height: 100%;
 }
 
 #game-container {
   background-color: #000000;
+  height: 100%;
 }
 
 .player-name {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%; /* Aggiungi un limite di larghezza per i nomi lunghi */
 }
 
 .custom-btn {
@@ -23,4 +28,37 @@ body {
   aspect-ratio: 1 / 1;
   max-width: 50px;
   max-height: 50px;
+  background-color: #444; /* Aggiungi uno sfondo per renderlo visibile */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.custom-btn:hover {
+  transform: scale(1.1); /* Aggiungi un effetto hover */
+}
+
+/* Media Queries per la responsività */
+@media screen and (max-width: 768px) {
+  .custom-btn {
+    max-width: 40px; /* Riduci la dimensione del pulsante su schermi piccoli */
+    max-height: 40px;
+  }
+
+  .player-name {
+    font-size: 14px; /* Riduci la dimensione del testo sui dispositivi mobili */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .custom-btn {
+    max-width: 35px;
+    max-height: 35px; /* Ulteriore riduzione per schermi ancora più piccoli */
+  }
+
+  .player-name {
+    font-size: 12px; /* Ancora più piccolo su schermi molto piccoli */
+  }
 }

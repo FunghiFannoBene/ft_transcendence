@@ -26,3 +26,4 @@ django-environ
 djangorestframework-simplejwt
 django-cors-headers
 django-extensions
+whitenoise

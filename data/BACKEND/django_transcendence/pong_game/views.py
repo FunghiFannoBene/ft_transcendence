@@ -56,14 +56,14 @@ def pong_game(request):
 #     # for a full-page load
 #     return render(request, 'base.html')
 
-def profile(request):
-    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        # Render only specific blocks based on context flags
-        content_html = render_to_string('profile.html', {'only_content': True}, request=request)
+# def profile(request):
+#     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+#         # Render only specific blocks based on context flags
+#         content_html = render_to_string('profile.html', {'only_content': True}, request=request)
 
-        return JsonResponse({
-            'content': content_html,
-        })
+#         return JsonResponse({
+#             'content': content_html,
+#         })
 
-    # for a full-page load
-    return render(request, 'base.html')
+#     # for a full-page load
+#     return render(request, 'base.html')

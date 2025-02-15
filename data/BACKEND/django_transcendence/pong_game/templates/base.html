@@ -40,7 +40,7 @@
 				</div>
 			</div>
 
-			<div class="d-xxl-flex justify-content-xxl-end align-items-xxl-center" id="top-banner">
+			<div class="d-flex justify-content-end align-items-center" id="top-banner" style="z-index: 100; position: relative;">
 				<div class="dropdown" id="btn-lang">
 					<button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
 						<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-language" id="icon-lang" style="font-size: 16px;">
@@ -65,7 +65,6 @@
 			<div
 				class="d-xxl-flex flex-column justify-content-xxl-center align-items-xxl-center"
 				id="dynamic-content"
-				data-script="{% static 'js/home.js' %}"
 			>
 				<!-- Content will be injected dynamically -->
 			</div>
@@ -77,17 +76,25 @@
 
 	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 
+	<script type="importmap">
+		{
+			"imports": {
+				"three": "{% static 'js/three/build/three.module.js' %}"
+			}
+		}
+	</script>
 	<script type="module">
 		import { initializeSPA } from '{% static "js/spa.js" %}';
 		
 		document.addEventListener('DOMContentLoaded', function() {  
 		  initializeSPA();
 		});
-
 		window.addEventListener("load", function() {
 			console.log("✅ Tutte le risorse sono state caricate!");
 		});
-	  </script>
-	  <script src="{% static 'js/auth.js' %}"></script>
+	</script>
+	<script src="{% static 'js/auth.js' %}"></script>
+	<!-- <script type="module" src="{% static 'js/pong_menu.js' %}" ></script>
+	<script type="text/javascript" src="{% static 'js/script.js' %}"></script> -->
 </body>
 </html>
