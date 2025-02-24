@@ -3,7 +3,7 @@
   width: 100%;
   height: 100vh;
   background: url(../media/noise.png) repeat, url(../media/bg_image.jpg) no-repeat top fixed;
-  background-size: auto, cover;
+  background-size: cover, cover;
   z-index: -7;
 }
 
@@ -14,15 +14,38 @@
 }
 
 #dynamic-content {
-  height: 940px;
   width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 /* Header */
 #top-banner {
   height: 70px;
-  
+  z-index: 1050 !important;
   background: linear-gradient(120deg, #c32606 30%, #f3a81c 80%, #fdf8a3 100%);
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./../fonts/CityBrawlersBoldCaps.woff2') format('woff2'),
+       url('./../fonts/CityBrawlersBoldCaps.woff') format('woff'),
+       url('./../fonts/CityBrawlersBoldCaps.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Stile per il titolo */
+#title {
+  font-family: 'CustomFont', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  text-align: center;
+  margin: 0;
 }
 
 /* Footer */
@@ -33,23 +56,33 @@
 
 /* Bottone di logout */
 #logout-btn {
-  margin-right: 30px;
-  width: 100px;
-  height: 30px;
-  font-size: 15px;
+  margin-right: 0;
+  width: 120px;
+  height: 40px;
+  font-size: 16px;
   font-family: "Versa Versa";
-  box-shadow: 3px 4px rgb(0, 0, 0);
   transition: box-shadow 0.3s, transform 0.3s;
   background: linear-gradient(120deg, #c32606 30%, #f3a81c 80%, #fdf8a3 100%);
   border: none;
   border-radius: 4px;
+  margin: 15px auto;
+  display: block;
+}
+
+#dropdown {
+  width: 120px;
+  height: 40px;
+  font-family: "Versa Versa";
+  transition: box-shadow 0.3s, transform 0.3s;
+  border: none;
+  margin: 15px auto;
+  display: block;
 }
 
 /* Media Queries per dispositivi con schermi più piccoli */
 @media (max-width: 1024px) {
   #top-banner {
     height: 60px;
-    width: 100%;
   }
 
   #bottom-banner {
@@ -57,9 +90,18 @@
   }
 
   #logout-btn {
-    width: 80px;
-    height: 25px;
+    width: 100px;
+    height: 35px;
     font-size: 14px;
+  }
+
+  #dropdown {
+    width: 100px;
+    height: 35px;
+  }
+
+  #title {
+    font-size: 3.5rem;
   }
 }
 
@@ -76,15 +118,23 @@
   #logout-btn {
     width: 100%;
     margin-right: 0;
-    height: 35px;
+    height: 40px;
     font-size: 18px;
+  }
+
+  #dropdown {
+    width: 100%;
+    height: 40px;
+  }
+
+  #title {
+    font-size: 3rem;
   }
 }
 
 @media (max-width: 480px) {
   #top-banner {
     height: 50px;
-    width: 100%;
   }
 
   #bottom-banner {
@@ -93,7 +143,17 @@
 
   #logout-btn {
     width: 100%;
-    height: 40px;
+    height: 45px;
     font-size: 20px;
   }
+
+  #dropdown {
+    width: 100%;
+    height: 45px;
+  }
+
+  #title {
+    font-size: 2.5rem;
+  }
 }
+

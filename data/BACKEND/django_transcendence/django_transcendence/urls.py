@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+# from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,8 +26,8 @@ urlpatterns = [
     path('', include('pong_game.urls')),  # include the pong_game URLs
     path('', include('oauth2.urls')),  # include the OAuth2 URLs
     # path('', include('authentication.urls')),  # include the CSRF URLs
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Login API (JWT)
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Login API (JWT)
+    # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 

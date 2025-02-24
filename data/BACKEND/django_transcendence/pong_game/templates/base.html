@@ -40,30 +40,36 @@
 				</div>
 			</div>
 
-			<div class="d-flex justify-content-end align-items-center" id="top-banner" style="z-index: 100; position: relative;">
-				<div class="dropdown" id="btn-lang">
-					<button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
-						<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-language" id="icon-lang" style="font-size: 16px;">
+			<div class="d-flex justify-content-center align-items-center w-100" id="top-banner" style="z-index: 100; position: relative;">
+				<h1 class="text-start" id="title">
+					<a href="/" class="text-decoration-none text-light">Transcendence</a>
+				</h1>				
+				<div class="d-flex ms-auto">
+					<div id="auth-btn-container"></div>
+					<div class="dropdown" id="btn-lang">
+						<button class="btn dropdown-toggle" id="dropdown" aria-expanded="false" data-bs-toggle="dropdown" type="button">
+						  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-language" id="icon-lang" style="font-size: 16px;">
 							<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
 							<path d="M4 5h7"></path>
 							<path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
 							<path d="M5 9c0 2.144 2.952 3.908 6.7 4"></path>
 							<path d="M12 20l4 -9l4 9"></path>
 							<path d="M19.1 18h-6.2"></path>
-						</svg>
-						english
-					</button>
-					<div id="auth-btn-container"></div>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#" id="lang-option-one">italian</a>
-						<a class="dropdown-item" href="#" id="lang-option-two">korean</a>
-					</div>
+						  </svg>
+						  <span id="selected-lang">English</span>
+						</button>
+						<div class="dropdown-menu" id="dropdown-lang-menu">
+						  <button class="dropdown-item active" aria-current="true">English</button>
+						  <button class="dropdown-item">Italiano</button>
+						  <button class="dropdown-item">한국어</button>
+						</div>
+					  </div>					  
 				</div>
 			</div>
 
 			<!-- Placeholder for dynamic main content -->
 			<div
-				class="d-xxl-flex flex-column justify-content-xxl-center align-items-xxl-center"
+				class="d-flex flex-column justify-content-center align-items-center"
 				id="dynamic-content"
 			>
 				<!-- Content will be injected dynamically -->
@@ -85,16 +91,19 @@
 	</script>
 	<script type="module">
 		import { initializeSPA } from '{% static "js/spa.js" %}';
-		
+		// import { getCookie, loadTranslations, updateDropdownText } from '{% static "js/lang.js" %}';
+
+		// const savedLang = getCookie('django_language') || 'en';
+
 		document.addEventListener('DOMContentLoaded', function() {  
-		  initializeSPA();
+			// loadTranslations(savedLang);
+			// updateDropdownText(savedLang);
+			initializeSPA();
 		});
 		window.addEventListener("load", function() {
 			console.log("✅ Tutte le risorse sono state caricate!");
 		});
 	</script>
-	<script src="{% static 'js/auth.js' %}"></script>
-	<!-- <script type="module" src="{% static 'js/pong_menu.js' %}" ></script>
-	<script type="text/javascript" src="{% static 'js/script.js' %}"></script> -->
+	<script type="module" src="{% static 'js/auth.js' %}"></script>
 </body>
 </html>

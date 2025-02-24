@@ -87,6 +87,14 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+LANGUAGES = [
+    ('en', 'English'),
+    ('it', 'Italiano'),
+    ('kr', '한국어'),
+]
+
+LANGUAGE_CODE = 'en'
+
 # CSRF_TRUSTED_ORIGINS = [
 #     "http://localhost:5173",
 #     "https://localhost",
@@ -145,6 +153,7 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 
@@ -223,13 +232,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": "mydatabase",
-#     }
-# }
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -270,9 +272,6 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = [
 #    os.path.join(BASE_DIR, 'pong_game/static'),  # Adjusted to point to your pong_game/static directory
 # ]
-# STATICFILES_DIRS = [
-
-# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -281,20 +280,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # login
 # Base URL for login and logout
-LOGIN_REDIRECT_URL = '/'  # Redirect after successful login
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
-ACCOUNT_LOGOUT_ON_GET = True  # Logs out immediately on a GET request
+# LOGIN_REDIRECT_URL = '/'  # Redirect after successful login
+# ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
+# ACCOUNT_LOGOUT_ON_GET = True  # Logs out immediately on a GET request
 
-# Email and Username settings
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # Use 'username', 'email', or 'username_email'
-ACCOUNT_EMAIL_REQUIRED = True  # Require email during signup
-ACCOUNT_EMAIL_VERIFICATION = 'optional'  # Can be 'mandatory', 'optional', or 'none'
+# # Email and Username settings
+# ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # Use 'username', 'email', or 'username_email'
+# ACCOUNT_EMAIL_REQUIRED = True  # Require email during signup
+# ACCOUNT_EMAIL_VERIFICATION = 'optional'  # Can be 'mandatory', 'optional', or 'none'
 
-# Signup and login behavior
-ACCOUNT_USERNAME_REQUIRED = True  # Require username during signup
-ACCOUNT_SIGNUP_REDIRECT_URL = '/'  # Redirect after signup (optional)
-ACCOUNT_SESSION_REMEMBER = True  # Keep the session logged in
+# # Signup and login behavior
+# ACCOUNT_USERNAME_REQUIRED = True  # Require username during signup
+# ACCOUNT_SIGNUP_REDIRECT_URL = '/'  # Redirect after signup (optional)
+# ACCOUNT_SESSION_REMEMBER = True  # Keep the session logged in
 
-# Email configuration
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3  # Link expiry for confirmation emails
-ACCOUNT_EMAIL_SUBJECT_PREFIX = '[My Project] '  # Prefix for email subjects
+# # Email configuration
+# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3  # Link expiry for confirmation emails
+# ACCOUNT_EMAIL_SUBJECT_PREFIX = '[My Project] '  # Prefix for email subjects

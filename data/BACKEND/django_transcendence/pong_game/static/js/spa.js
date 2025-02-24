@@ -1,13 +1,15 @@
+import { checkAuth } from "./auth.js";
+
 export function initializeSPA() {
   window.addEventListener("load", () => {
     handleRoute();
-    observeDOMChanges();
-    setTimeout(checkAuth, 200);
+    // observeDOMChanges();
+    // setTimeout(checkAuth, 200);
   });
   window.addEventListener("popstate", () => {
     handleRoute();
-    observeDOMChanges();
-    setTimeout(checkAuth, 200);
+    // observeDOMChanges();
+    // setTimeout(checkAuth, 200);
   });
   console.log("🚀 SPA initialized!");
   // handleRoute(); // Chiamata iniziale per il primo caricamento
@@ -55,6 +57,20 @@ export async function handleRoute() {
   const path = window.location.pathname;
   console.log(`handleRoute chiamato con path: ${path}`);
 
+  const isAuthenticated = await checkAuth();
+
+  if (path.includes("/pong_game/") && !isAuthenticated) {
+    console.log("❌ Accesso negato: utente non autenticato.");
+    window.location.href = "/"; // Reindirizza alla home di login
+    return;
+  }
+
+  if (path === "/" && isAuthenticated) {
+    console.log("❌ Accesso negato: utente autenticato non può tornare alla home di login.");
+    window.location.href = "/pong_game/"; // Reindirizza al pong_menu
+    return;
+  }
+
   const contentDiv = document.getElementById("dynamic-content");
   const data = await fetchContent(path);
 
@@ -70,15 +86,17 @@ export async function handleRoute() {
   const scriptsToLoad = [];
 
   if (path.includes("/")) {
-    scriptsToLoad.push({ src: "/static/js/auth.js", isModule: false });
+    scriptsToLoad.push({ src: "/static/js/lang.js", isModule: true });
+    scriptsToLoad.push({ src: "/static/js/auth.js", isModule: true });
     scriptsToLoad.push({ src: "/static/js/login.js", isModule: false });
-    scriptsToLoad.push({ src: "/static/js/logout.js", isModule: false });
   }
 
   if (path.includes("pong_game")) {
-    scriptsToLoad.push({ src: "/static/js/auth.js", isModule: false });
+    scriptsToLoad.push({ src: "/static/js/logout.js", isModule: true });
+    scriptsToLoad.push({ src: "/static/js/auth.js", isModule: true });
     scriptsToLoad.push({ src: "/static/js/pong_menu.js", isModule: true });
     scriptsToLoad.push({ src: "/static/js/script.js", isModule: false });
+    scriptsToLoad.push({ src: "/static/js/lang.js", isModule: true });
   }
 
   console.log(`📜 Script da ricaricare:`, scriptsToLoad);
@@ -132,37 +150,37 @@ export function loadJS(scriptSrc, isModule = false) {
 }
 
 
-function observeDOMChanges() {
-  const observer = new MutationObserver(async (mutations, obs) => {
-    // Disattiva temporaneamente l'osservazione per evitare loop infiniti
-    obs.disconnect();
+// function observeDOMChanges() {
+//   const observer = new MutationObserver(async (mutations, obs) => {
+//     // Disattiva temporaneamente l'osservazione per evitare loop infiniti
+//     obs.disconnect();
 
-    let shouldReloadScripts = false;
+//     let shouldReloadScripts = false;
 
-    for (const mutation of mutations) {
-      if (mutation.addedNodes.length > 0) {
-        console.log("🔄 Modifica rilevata nel DOM.");
-        shouldReloadScripts = true;
-      }
-    }
+//     for (const mutation of mutations) {
+//       if (mutation.addedNodes.length > 0) {
+//         console.log("🔄 Modifica rilevata nel DOM.");
+//         shouldReloadScripts = true;
+//       }
+//     }
 
 
-    // Riattiva l'osservazione solo dopo aver caricato gli script
-    setTimeout(() => {
-      obs.observe(document.getElementById("dynamic-content"), {
-        childList: true,
-        subtree: true,
-      });
-    }, 200); // Evita di riattivarlo immediatamente per prevenire loop
-  });
+//     // Riattiva l'osservazione solo dopo aver caricato gli script
+//     setTimeout(() => {
+//       obs.observe(document.getElementById("dynamic-content"), {
+//         childList: true,
+//         subtree: true,
+//       });
+//     }, 200); // Evita di riattivarlo immediatamente per prevenire loop
+//   });
 
-  observer.observe(document.getElementById("dynamic-content"), {
-    childList: true,
-    subtree: true,
-  });
+//   observer.observe(document.getElementById("dynamic-content"), {
+//     childList: true,
+//     subtree: true,
+//   });
 
-  console.log("👀 MutationObserver attivato!");
-}
+//   console.log("👀 MutationObserver attivato!");
+// }
 
 function removeExistingScripts(scriptSrcList) {
   scriptSrcList.forEach(src => {
@@ -175,7 +193,7 @@ function removeExistingScripts(scriptSrcList) {
 }
 
 
-// note: functions also for lang.js
+// // note: functions also for lang.js
 // export function loadTranslations(lang) {
 //   return fetch(`/static/translations/${lang}.json`)
 //     .then(response => response.json())

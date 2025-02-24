@@ -1,4 +1,6 @@
-async function logout() {
+import { checkAuth } from "./auth.js";
+
+export async function logout() {
     let response = await fetch("http://localhost:8000/logout/", {
         method: "POST",
         credentials: "include",

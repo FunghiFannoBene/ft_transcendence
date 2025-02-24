@@ -11,20 +11,20 @@ class PongAIPlayer {
         this.updateInterval = 1000; // 1 second update frequency
         
         // AI strategy parameters
-        this.difficulty = 1; // Adjustable AI skill level (0-1)
+        this.difficulty = 0.9; // Adjustable AI skill level (0-1)
         this.predictionAccuracy = 1;
         this.randomnessFactor = 0;
     }
 
+
+
     predictBallTrajectory(ball) {
         // Simulate ball trajectory with some uncertainty
         const predictedX = ball.mesh.position.x + 
-            (ball.velocity.x * this.predictionAccuracy * 
-             (Math.random() * this.randomnessFactor + 0.9));
+            (ball.velocity.x * this.predictionAccuracy);
         
         return predictedX;
     }
-
     decideMovement(ball, aiPaddle) {
         const predictedBallX = this.predictBallTrajectory(ball);
         const currentPaddleX = aiPaddle.mesh.position.x;
@@ -47,28 +47,6 @@ class PongAIPlayer {
         
         return moveStep;
     }
-
-    // update(ball, aiPaddle, currentTime) {
-    //     // Respect 1-second refresh constraint
-    //     if (currentTime - this.lastUpdateTime >= this.updateInterval) {
-    //         const movementDelta = this.decideMovement(ball, aiPaddle);
-            
-    //         // Apply movement
-    //         aiPaddle.mesh.position.x += movementDelta;
-
-    //         this.lastUpdateTime = currentTime;
-            
-    //         // Boundary checks
-    //         return Math.min(
-    //             Math.max(
-    //                 aiPaddle.mesh.position.x, 
-    //                 -this.gameWidth/2 + this.paddleWidth/2
-    //             ), 
-    //             this.gameWidth/2 - this.paddleWidth/2
-    //         );
-    //     }
-    //     return null;
-    // }
 
     update(ball, aiPaddle, currentTime) {
         let position;

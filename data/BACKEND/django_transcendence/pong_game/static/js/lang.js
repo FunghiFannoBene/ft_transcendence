@@ -1,58 +1,61 @@
-import { loadTranslations, applyTranslations, handleRoute } from './spa.js';
-
-document.addEventListener("DOMContentLoaded", function () {
-  const changeLangButton = document.getElementById("btn-lang");
-  const langOptions = document.querySelectorAll(".dropdown-item");
-
-  if (!changeLangButton || langOptions.length === 0) {
-    console.error("Required elements not found");
-    return;
-  }
-
-  const supportedLanguages = ["en", "it", "kr"];
-  let currentLang = localStorage.getItem("currentLang") || "en";
-
-  langOptions.forEach(option => {
-    option.addEventListener("click", function () {
-      const selectedLang = option.getAttribute("id").split("-").pop();
-      if (supportedLanguages.includes(selectedLang)) {
-        currentLang = selectedLang;
-        localStorage.setItem("currentLang", currentLang);
-        changeLanguage(currentLang);
-      }
-    });
-  });
-
-  function changeLanguage(newLang) {
-    document.documentElement.lang = newLang;
-    loadTranslations(newLang).then(() => {
-      handleRoute(); // reload content with new translations
-      updateLangDisplay(newLang);
-    });
-  }
-
-  function updateLangDisplay(lang) {
-    const langDisplay = changeLangButton.querySelector("button");
-    const languageNames = {
-      en: "English",
-      it: "Italiano",
-      kr: "한국어"
-    };
-    if (langDisplay) {
-      langDisplay.textContent = languageNames[lang] || "Unknown Language";
+// Funzione per cambiare la lingua
+async function changeLanguage(langCode) {
+  try {
+    const response = await fetch(`/set_language/${langCode}/`);
+    const data = await response.json();
+    
+    if (data.status === 'success') {
+      // Carica le traduzioni per la nuova lingua
+      await loadTranslations(langCode);
+      updateDropdownText(langCode);
     }
-
-    // update dropdown items
-    // const dropdownIds = ["lang-option-one", "lang-option-two"];
-    let index = 0;
-    supportedLanguages.forEach(language => {
-      if (language !== lang) {
-        langOptions[index].textContent = languageNames[language];
-        // langOptions[index].setAttribute("id", dropdownIds[index]);
-        index++;
-      }
-    });
+  } catch (error) {
+    console.error('Errore nel cambio lingua:', error);
   }
+}
 
-  changeLanguage(currentLang); // initialize language on load
+// Funzione per caricare le traduzioni
+async function loadTranslations(langCode) {
+  const response = await fetch(`/translations/?lang=${langCode}`);
+  const translations = await response.json();
+  
+  // Applica le traduzioni ai contenuti
+  applyTranslations(translations);
+}
+
+// Funzione per applicare le traduzioni
+function applyTranslations(translations) {
+  Object.keys(translations).forEach((key) => {
+    const elem = document.getElementById(key);
+    if (elem) {
+      elem.textContent = translations[key];
+    }
+  });
+}
+
+// Funzione per aggiornare il testo del dropdown
+function updateDropdownText(langCode) {
+  const dropdownText = langCode === 'it' ? 'Italiano' : langCode === 'kr' ? '한국어' : 'English';
+  document.getElementById('selected-lang').textContent = dropdownText;
+
+  // Evidenzia la lingua selezionata nel menu
+  document.querySelectorAll('.dropdown-item').forEach((item) => {
+    item.classList.toggle('active', item.textContent.trim() === dropdownText);
+  });
+}
+
+// Gestione del cambio lingua tramite il menu
+document.querySelectorAll('.dropdown-item').forEach((item) => {
+  if (item) {
+  item.addEventListener('click', async () => {
+    const selectedLang = item.textContent.trim();
+    const langCode = selectedLang === 'Italiano' ? 'it' : selectedLang === '한국어' ? 'kr' : 'en';
+    await changeLanguage(langCode);
+  });
+}
 });
+
+
+
+
+

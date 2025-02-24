@@ -1,5 +1,22 @@
 {
-	"prompt-play": "",
-	"btn-login": "",
-	"btn-signup": ""
+		"welcome": "환영합니다",
+		"transcendence": "초월",
+		"play": "게임을 하고 싶으신가요?",
+		"btn-oauth": "42로 로그인",
+		"startGame": "게임 시작",
+		"gameSettings": "게임 설정",
+		"createTournament": "토너먼트 만들기",
+		"offcanvasSettingsLabel": "Impostazioni di gioco",
+		"ballSpeedy": "공 속도:",
+		"playersNumber": "플레이어 수:",
+		"1player": "1명 플레이어",
+		"2players": "2명 플레이어",
+		"3players": "3명 플레이어",
+		"offcanvasTournamentLabel": "Modalità torneo",
+		"startTournament": "Crea torneo",
+		"add-field": "다른 플레이어 추가",
+		"remove-field": "플레이어 제거",
+		"generate-tournament": "토너먼트 시작",
+		"tournament": "토너먼트",
+		"reset_tournament": "토너먼트 초기화"
 }

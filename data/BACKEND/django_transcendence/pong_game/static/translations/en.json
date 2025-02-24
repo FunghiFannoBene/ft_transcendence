@@ -1,5 +1,22 @@
 {
-	"prompt-play": "",
-	"btn-login": "LOGIN",
-	"btn-signup": "SIGNUP"
+	"welcome": "WELCOME TO",
+	"transcendence": "TRANSCENDENCE",
+	"play": "INTERESTED IN PLAYING?",
+	"btn-oauth": "LOG IN WITH 42",
+	"startGame": "Start Game",
+	"gameSettings": "Game Settings",
+	"createTournament": "Create Tournament",
+	"offcanvasSettingsLabel": "Game Settings",
+	"ballSpeedy": "Ball Speed:",
+	"playersNumber": "Players Number:",
+	"1player": "1 Player",
+	"2players": "2 Players",
+	"3players": "3 Players",
+	"offcanvasTournamentLabel": "Tournament Mode",
+	"startTournament": "Create Tournament",
+	"add-field": "Add other player",
+	"remove-field": "Remove player",
+	"generate-tournament": "Start Tournament",
+	"tournament": "Tournament",
+	"reset_tournament": "Reset Tournament"
 }

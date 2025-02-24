@@ -37,4 +37,45 @@
 	font-style: italic;
 	font-display: swap;
   }
+
+  /* Body */
+body {
+	font-family: 'Quantico', sans-serif;
+	font-size: 1rem; /* Dimensione base del font */
+  }
+  
+  /* Modifica per schermi tablet (max-width: 1024px) */
+  @media (max-width: 1024px) {
+	body {
+	  font-size: 0.95rem; /* Ridurre leggermente il font sui tablet */
+	}
+  }
+  
+  /* Modifica per schermi mobili (max-width: 768px) */
+  @media (max-width: 768px) {
+	body {
+	  font-size: 0.85rem; /* Ridurre ulteriormente per dispositivi mobili */
+	}
+  }
+  
+  /* Modifica per schermi molto piccoli (max-width: 480px) */
+  @media (max-width: 480px) {
+	body {
+	  font-size: 0.75rem; /* Ancora più piccolo sui dispositivi piccoli */
+	}
+  }
+
+  /* Esempio di grassetto responsivo per schermi più grandi */
+@media (min-width: 1024px) {
+	.bold-text {
+	  font-weight: bold; /* Applica il grassetto solo su schermi grandi */
+	}
+  }
+  
+  @media (max-width: 768px) {
+	.bold-text {
+	  font-weight: normal; /* Disattiva il grassetto su schermi più piccoli */
+	}
+  }
+  
   

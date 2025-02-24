@@ -5,6 +5,7 @@ const rangeSpeedValue = document.getElementById("rangeSpeedValue")
 // const rangeInput = document.getElementById("playersNumber")
 // const rangeValue = document.getElementById("rangeValue")
 
+
 ballSpeed.value = 1
 rangeSpeedValue.textContent = ballSpeed.value
 
@@ -33,10 +34,10 @@ const tournamentOffcanvas = new bootstrap.Offcanvas('#offcanvasTournament')
 const tournamentFinishContainer = document.getElementById("tournament-finish")
 const tournamentWinner = document.getElementById("tournament-winner")
 
-const barPlayer1Name = document.getElementById("player1-name-field")
-const barPlayer2Name = document.getElementById("player2-name-field")
-const barPlayer1Info = document.getElementById("player1-info-field")
-const barPlayer2Info = document.getElementById("player2-info-field")
+const barPlayer1Name = document.getElementById("namePlayer1")
+const barPlayer2Name = document.getElementById("namePlayer2")
+const barPlayer1Info = document.getElementById("namePlayer3")
+const barPlayer2Info = document.getElementById("namePlayer4")
 
 let players = []
 let rounds = {}
@@ -273,6 +274,17 @@ window.addEventListener("gameResultEvent", (event) => {
 	advanceMatch(winnerIndex)
 })
 
+document.addEventListener('translationsLoaded', (event) => {
+	const language = event.detail.language;
+	console.log(`Traduzioni caricate per la lingua: ${language}`);
+
+	// Esegui qui il codice che dipende dalle traduzioni
+	initializeOtherScripts();
+});
+
+function initializeOtherScripts() {
+	console.log("Altri script inizializzati dopo il caricamento delle traduzioni.");
+}
 
 // Test
 // document.addEventListener("keydown", (e) => {

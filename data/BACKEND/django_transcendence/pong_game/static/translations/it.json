@@ -1,5 +1,23 @@
 {
-	"prompt-play": "BENVENUT* SU <FT_TRANSCENDENCE>",
-	"btn-login": "ACCEDI",
-	"btn-signup": "REGISTRATI"
+		"welcome": "BENVENUTO IN",
+		"transcendence": "TRASCENDENZA",
+		"play": "TI INTERESSA GIOCARE?",
+		"btn-oauth": "ACCEDI CON 42",
+		"startGame": "Inizia partita",
+		"gameSettings": "Impostazioni gioco",
+		"createTournament": "Crea torneo",
+		"offcanvasSettingsLabel": "Impostazioni di gioco",
+		"ballSpeedy": "Velocità palla:",
+		"playersNumber": "Numero di giocatori:",
+		"1player": "1 Giocatore",
+		"2players": "2 Giocatori",
+		"3players": "3 Giocatori",
+		"offcanvasTournamentLabel": "Modalità torneo",
+		"startTournament": "Crea torneo",
+		"add-field": "Aggiungi altro giocatore",
+		"remove-field": "Rimuovi giocatore",
+		"generate-tournament": "Inizia torneo",
+		"tournament": "Torneo",
+		"reset_tournament": "Resetta torneo"
 }
+	  

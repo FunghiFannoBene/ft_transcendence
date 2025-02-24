@@ -1,6 +1,10 @@
+import os
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.template.loader import render_to_string
+from django.utils.translation import get_language, activate
+from django.conf import settings
+import json
 
 # Create your views here.
 def home(request):
@@ -31,6 +35,36 @@ def pong_game(request):
 
     # for a full-page load
     return render(request, 'base.html')
+
+
+
+
+def translations(request):
+    language = request.GET.get('lang', get_language())
+    translation_path = os.path.join(settings.STATIC_ROOT, 'translations', f'{language}.json')
+    fallback_path = os.path.join(settings.STATIC_ROOT, 'translations', 'en.json')
+    
+    try:
+        with open(translation_path, 'r', encoding='utf-8') as f:
+            translations_data = json.load(f)
+        return JsonResponse(translations_data)
+    except FileNotFoundError:
+        with open(fallback_path, 'r', encoding='utf-8') as f:
+            translations_data = json.load(f)
+        return JsonResponse(translations_data, status=200)
+
+
+def set_language(request, language_code):
+    supported_languages = ['en', 'it', 'kr']
+    if language_code in supported_languages:
+        activate(language_code)
+        response = JsonResponse({'status': 'success'})
+        response.set_cookie('django_language', language_code)  # 🔥 Salva nel cookie
+        request.session['django_language'] = language_code
+        return response
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Lingua non supportata'}, status=400)
+
 
 # def login_form(request):
 #     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':

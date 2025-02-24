@@ -6,21 +6,73 @@ html, body {
   height: 100%;
 }
 
+.offcanvas-start {
+  top: 70px !important; /* Distanza dalla navbar */
+  height: calc(100vh - 70px); /* Riempi lo schermo sotto la navbar */
+}
+
+.offcanvas-end {
+  top: 70px !important; /* Distanza dalla navbar */
+  height: calc(100vh - 70px); /* Riempi lo schermo sotto la navbar */
+}
+
+.offcanvas-backdrop {
+  z-index: 1040 !important; /* Lo sfondo scuro */
+}
+
 .main-container {
-  background-color: #2c2c2c;
   height: 100%;
 }
 
 #game-container {
-  background-color: #000000;
+  background-color: transparent;
   height: 100%;
+}
+
+#startGame {
+  margin-right: 30px;
+  width: 220px;
+  height: 60px;
+  font-size: 20px;
+  font-family: "Versa Versa";
+  /* box-shadow: 3px 4px rgb(0, 0, 0); */
+  transition: box-shadow 0.3s, transform 0.3s;
+  background: linear-gradient(120deg, #c32606 30%, #f3a81c 80%, #fdf8a3 100%);
+  border: none;
+  border-radius: 4px;
+}
+
+#gameSettings {
+  margin-right: 30px;
+  width: 220px;
+  height: 60px;
+  font-family: "Versa Versa";
+  /* box-shadow: 3px 4px rgb(0, 0, 0); */
+  transition: box-shadow 0.3s, transform 0.3s;
+  background: linear-gradient(120deg, #c32606 30%, #f3a81c 80%, #fdf8a3 100%);
+  border: none;
+  border-radius: 4px;
+}
+
+#createTournament {
+  margin-right: 30px;
+  width: 220px;
+  height: 60px;
+  font-family: "Versa Versa";
+  /* box-shadow: 3px 4px rgb(0, 0, 0); */
+  transition: box-shadow 0.3s, transform 0.3s;
+  background: linear-gradient(120deg, #c32606 30%, #f3a81c 80%, #fdf8a3 100%);
+  border: none;
+  border-radius: 4px;
 }
 
 .player-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #1f1f29;
   max-width: 100%; /* Aggiungi un limite di larghezza per i nomi lunghi */
+  font-family: "Versa Versa";
 }
 
 .custom-btn {
@@ -28,37 +80,20 @@ html, body {
   aspect-ratio: 1 / 1;
   max-width: 50px;
   max-height: 50px;
-  background-color: #444; /* Aggiungi uno sfondo per renderlo visibile */
+  font-size: 20px;
+  font-family: "Versa Versa";
+  background: linear-gradient(120deg, #c32606 30%, #f3a81c 80%, #fdf8a3 100%);
   border: none;
-  border-radius: 10px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
+  border-radius: 4px;
+  box-shadow: 3px 4px rgb(0, 0, 0);
+  /* transition: transform 0.3s ease-in-out; */
 }
 
 .custom-btn:hover {
   transform: scale(1.1); /* Aggiungi un effetto hover */
 }
 
-/* Media Queries per la responsività */
-@media screen and (max-width: 768px) {
-  .custom-btn {
-    max-width: 40px; /* Riduci la dimensione del pulsante su schermi piccoli */
-    max-height: 40px;
-  }
-
-  .player-name {
-    font-size: 14px; /* Riduci la dimensione del testo sui dispositivi mobili */
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .custom-btn {
-    max-width: 35px;
-    max-height: 35px; /* Ulteriore riduzione per schermi ancora più piccoli */
-  }
-
-  .player-name {
-    font-size: 12px; /* Ancora più piccolo su schermi molto piccoli */
-  }
+.pressed {
+  transform: translateY(4px);
+  box-shadow: 0px 0px rgba(0, 0, 0);
 }

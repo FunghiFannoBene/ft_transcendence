@@ -2,8 +2,9 @@ import * as THREE from "./three/build/three.module.js";
 import { TextGeometry } from "./three/examples/jsm/geometries/TextGeometry.js";
 import Ball from "./Ball.js";
 import Paddle from "./Paddle.js";
+// import { paddles } from "./Paddle.js";
+// import { balls } from "./Ball.js";
 import { FontLoader } from "./three/examples/jsm/loaders/FontLoader.js";
-// import srcFont from './three/examples/fonts/helvetiker_bold.typeface.json?url'
 
 console.log("Pong game script loaded");
 const srcFont = "/static/fonts/helvetiker_bold.typeface.json";
@@ -25,7 +26,7 @@ let lastUpdate = Date.now();
 const reactionTime = 1000;
 
 let ball, paddleSpeed, player1Paddle, player2Paddle, player1Mesh, player2Mesh, loadedFont, isTournament
-let playersNumber = 2
+let playersNumber
 let gameStarted = false
 let gameReady = false
 // let startBallDirection = Math.random() < 0.5 ? -1 : 1;
@@ -48,8 +49,22 @@ const clock = new THREE.Clock()
 clock.stop()
 
 // Scene
-const scene = new THREE.Scene()
-// scene.background = new THREE.Color(0xdedede)
+// const scene = new THREE.Scene()
+// scene.background = new THREE.Color(0x1f1f29)
+//Renderer
+const renderer = new THREE.WebGLRenderer({
+    antialias: window.devicePixelRatio < 2,
+    logarithmicDepthBuffer: true,
+    alpha: true
+})
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x000000, 0); // Imposta il colore nero con alpha 0 (trasparente)
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = null;
+
+
 
 function updateScoreGeometry(score) {
     const geometry = new TextGeometry(`${score}`, {
@@ -61,11 +76,6 @@ function updateScoreGeometry(score) {
     return geometry
 }
 
-//Renderer
-const renderer = new THREE.WebGLRenderer({
-    antialias: window.devicePixelRatio < 2,
-    logarithmicDepthBuffer: true,
-})
 
 
 const gameContainer = document.getElementById('game-container')
@@ -152,12 +162,13 @@ const boundaries = new THREE.Vector2(20, 20)
 // scene.add( plane )
 
 const boundGeometry = new THREE.BoxGeometry(.5, 1, boundaries.x * 2)
-const boundMaterial = new THREE.MeshBasicMaterial()
+const boundMaterial = new THREE.MeshBasicMaterial({ color: 0xf3a81c })
+
 const leftBound = new THREE.Mesh(boundGeometry, boundMaterial)
 leftBound.position.x = -boundaries.x - .25
 
-const rightBound = leftBound.clone()
-rightBound.position.x *= -1
+const rightBound = new THREE.Mesh(boundGeometry, boundMaterial)
+rightBound.position.x = boundaries.x + .25
 
 scene.add(leftBound, rightBound)
 
@@ -168,6 +179,13 @@ ball = new Ball(scene, ballRadius, [player1Paddle, player2Paddle], boundaries)
 function gameFinish(winnerIndex) {
     const resultEvent = new CustomEvent("gameResultEvent", { detail: winnerIndex });
     window.dispatchEvent(resultEvent);
+
+    // Rimuovi gli event listener della telecamera
+    ball.removeEventListener('onCameraMove', moveCamera);
+    ball.removeEventListener('onCameraReset', resetCamera);
+
+    // Resetta la telecamera
+    resetCamera();
 }
 
 ball.addEventListener('onScore', (event) => {
@@ -218,8 +236,10 @@ loader.load(
         });
 
         geometry.center();
+        
+        const textMaterial = new THREE.MeshBasicMaterial({ color: 0xf3a81c });
 
-        player1Mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial());
+        player1Mesh = new THREE.Mesh(geometry, textMaterial);
         player2Mesh = player1Mesh.clone();
 
         player1Mesh.position.set(boundaries.x - boundGeometry.parameters.height, 4, 4);
@@ -238,7 +258,11 @@ loader.load(
 requestAnimationFrame(tic)
 
 function setGame(ballSpeed) {
-    isAnimating = false
+    resetCamera();
+    isAnimating = false;
+    gameStarted = false;  // Assicurati di resettare gameStarted
+    gameReady = false;    // Resetta gameReady per abilitare orbitCamera()
+
     moveCamera(3, 10)
 
     for (const player in score) {
@@ -260,6 +284,7 @@ function setGame(ballSpeed) {
     player2Paddle.setXPosition(0)
 
     ball.addBall(startBallDirection)
+    
     gameReady = true
 
     setTimeout(() => {
@@ -271,6 +296,7 @@ function setGame(ballSpeed) {
 
 // Frame loop
 let targetPosition = 0;
+const lerpFactor = 1;
 function tic() {
     if (gameStarted) {
         // Tempo trascorso dal frame precedente
@@ -290,18 +316,32 @@ function tic() {
             player2Paddle.setXPosition(player2Paddle.mesh.position.x + paddleSpeed)
         }
 
-        let temp = player2Paddle.ai.update(ball, player2Paddle, performance.now());
-        if (temp) {
-            targetPosition = temp;
-        }
-        if (player2Paddle.mesh.position.x > targetPosition)
-            player2Paddle.setXPosition(player2Paddle.mesh.position.x - paddleSpeed)
-        else if (player2Paddle.mesh.position.x < targetPosition)
-            player2Paddle.setXPosition(player2Paddle.mesh.position.x + paddleSpeed)
+        if (playersNumber == 1) {
+            let temp = player2Paddle.ai.update(ball, player2Paddle, performance.now());
+            if (temp) {
+                targetPosition = temp;
+            }
 
-        // if (ball.velocity.z < 0) {
-        // player2Paddle.setXPosition(ball.mesh.position.x)
-        // }
+            // Definisci una tolleranza per evitare il movimento oscillatorio
+            const tolerance = 0.5; // Puoi regolare questo valore in base alle tue esigenze
+
+            // Calcola la differenza tra la posizione corrente e il target
+            const delta = player2Paddle.mesh.position.x - targetPosition;
+
+            // Muovi il paddle gradualmente verso la posizione target solo se la differenza è maggiore della tolleranza
+            if (delta > tolerance) {
+                player2Paddle.setXPosition(player2Paddle.mesh.position.x - paddleSpeed);
+            } else if (delta < -tolerance) {
+                player2Paddle.setXPosition(player2Paddle.mesh.position.x + paddleSpeed);
+            }
+            // if (ball.velocity.z < 0) {
+            // player2Paddle.setXPosition(ball.mesh.position.x)
+            // }
+            // Movimento graduale del paddle AI
+            // player2Paddle.setXPosition(
+            //     player2Paddle.mesh.position.x + (targetPosition - player2Paddle.mesh.position.x) * lerpFactor 
+            // );
+        }
 
         ball.update(deltaTime)
     }
@@ -316,6 +356,23 @@ function tic() {
     requestAnimationFrame(tic)
 }
 
+// function startGameAI() {
+//     let temp = player2Paddle.ai.update(ball, player2Paddle, performance.now());
+//     if (temp) {
+//         targetPosition = temp;
+//     }
+//     if (player2Paddle.mesh.position.x > targetPosition)
+//         player2Paddle.setXPosition(player2Paddle.mesh.position.x - paddleSpeed)
+//     else if (player2Paddle.mesh.position.x < targetPosition)
+//         player2Paddle.setXPosition(player2Paddle.mesh.position.x + paddleSpeed)
+
+//     if (ball.velocity.z < 0) {
+//     player2Paddle.setXPosition(ball.mesh.position.x)
+//     }
+// }
+
+
+
 const wPlayerButton = document.getElementById("w-button")
 const sPlayerButton = document.getElementById("s-button")
 const upPlayerButton = document.getElementById("up-button")
@@ -326,26 +383,26 @@ const twoPlayerButton = document.getElementById("2-button")
 document.addEventListener('keydown', (event) => {
     switch (event.code) {
         case 'ArrowDown':
-            downPlayerButton.classList.add("text-bg-light")
+            downPlayerButton.classList.add("text-bg-light", "pressed")
             player2KeyState.left = true
             break
         case 'KeyS':
-            sPlayerButton.classList.add("text-bg-light")
+            sPlayerButton.classList.add("text-bg-light", "pressed")
             player1KeyState.left = true
             break
         case 'ArrowUp':
-            upPlayerButton.classList.add("text-bg-light")
+            upPlayerButton.classList.add("text-bg-light", "pressed")
             player2KeyState.right = true
             break
         case 'KeyW':
-            wPlayerButton.classList.add("text-bg-light")
+            wPlayerButton.classList.add("text-bg-light", "pressed")
             player1KeyState.right = true
             break
         case 'Digit2':
-            onePlayerButton.classList.add("text-bg-light")
+            onePlayerButton.classList.add("text-bg-light", "pressed")
             break
         case 'Digit5':
-            twoPlayerButton.classList.add("text-bg-light")
+            twoPlayerButton.classList.add("text-bg-light", "pressed")
             break
     }
 })
@@ -353,29 +410,29 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
     switch (event.code) {
         case 'ArrowDown':
-            downPlayerButton.classList.remove("text-bg-light")
+            downPlayerButton.classList.remove("text-bg-light", "pressed")
             player2KeyState.left = false
             break
         case 'KeyS':
-            sPlayerButton.classList.remove("text-bg-light")
+            sPlayerButton.classList.remove("text-bg-light", "pressed")
             player1KeyState.left = false
             break
         case 'ArrowUp':
-            upPlayerButton.classList.remove("text-bg-light")
+            upPlayerButton.classList.remove("text-bg-light", "pressed")
             player2KeyState.right = false
             break
         case 'KeyW':
-            wPlayerButton.classList.remove("text-bg-light")
+            wPlayerButton.classList.remove("text-bg-light", "pressed")
             player1KeyState.right = false
             break
         case 'Digit2':
-            onePlayerButton.classList.remove("text-bg-light")
+            onePlayerButton.classList.remove("text-bg-light", "pressed")
             if (playersNumber == 3) {
                 ball.changeBallVelocity(1)
             }
             break
         case 'Digit5':
-            twoPlayerButton.classList.remove("text-bg-light")
+            twoPlayerButton.classList.remove("text-bg-light", "pressed")
             if (playersNumber == 3) {
                 ball.changeBallVelocity(-1)
             }
@@ -403,21 +460,24 @@ const playerBallContainer = document.getElementById("playerBall-box")
 
 function startGame() {
     let ballSpeed = document.getElementById("ballSpeed").value;
-    paddleSpeed = 0.1
+    paddleSpeed = 0.2
 
     // Converti il valore in numero intero
     ballSpeed = parseInt(ballSpeed, 10);
     
     // Imposta i limiti della velocità
-    const minSpeed = 13; // valore per 1
-    const maxSpeed = 50; // valore per 100
+    const minSpeed = 15; // valore per 1
+    const maxSpeed = 30; // valore per 100
     
     // Calcola la velocità proporzionale e arrotonda a intero
     ballSpeed = Math.round(minSpeed + (ballSpeed - 1) * (maxSpeed - minSpeed) / (100 - 1));
     paddleSpeed = paddleSpeed + (ballSpeed / 100)
 
-    const playersN = document.getElementById("playersOption1").checked
-    console.log(playersN)
+    // const playersN = document.getElementById("playersOption1").checked
+    // console.log(playersN)
+    const playersOption1 = document.getElementById("playersOption1");
+    const playersOption2 = document.getElementById("playersOption2");
+    const playersOption3 = document.getElementById("playersOption3");
 
     mainMenuContainer.classList.remove("d-flex")
     mainMenuContainer.classList.add("d-none")
@@ -427,10 +487,18 @@ function startGame() {
         return
     }
 
-    if (playersN)
-        playersNumber = 2
-    else
-        playersNumber = 3
+    // if (playersN)
+    //     playersNumber = 2
+    // else
+    //     playersNumber = 3
+
+    if (playersOption1.checked) {
+        playersNumber = 1;
+    } else if (playersOption2.checked) {
+        playersNumber = 2;
+    } else if (playersOption3.checked) {
+        playersNumber = 3;
+    }
 
     if (playersNumber == 3) {
 	    playerBallContainer.classList.remove("d-none")
@@ -471,9 +539,44 @@ const startMatchButton = document.getElementById('startMatch')
 startMatchButton.addEventListener("click", () => {
     
     isTournament = true
-    document.getElementById("playersOption1").checked = true
+    document.getElementById("playersOption2").checked = true
 
     barPlayer1Info.classList.remove("d-none")
     barPlayer2Info.classList.remove("d-none")
     startGame()
 })
+
+function resetCamera() {
+    const initialPosition = new THREE.Vector3(-40, 20, 0); // Posizione iniziale della telecamera
+    camera.position.copy(initialPosition);
+    camera.lookAt(new THREE.Vector3(0, 0, 0)); // Punto di vista iniziale
+    isAnimating = false; // Assicurati che l'animazione sia ferma
+}
+
+// function animateGradient() {
+//     requestAnimationFrame(animateGradient);
+//     boundMaterial.uniforms.time.value += 0.01; // Velocità del gradiente
+    
+//     if (player1Mesh && player1Mesh.material.uniforms) {
+//         player1Mesh.material.uniforms.time.value += 0.01;
+//     }
+
+//     if (player2Mesh && player2Mesh.material.uniforms) {
+//         player2Mesh.material.uniforms.time.value += 0.01;
+//     }
+
+//     paddles.forEach(paddle => {
+//         if (paddle.material.uniforms) {
+//             paddle.material.uniforms.time.value += 0.01;
+//         }
+//     });
+
+//     balls.forEach(ball => {
+//         if (ball.material.uniforms) {
+//             ball.material.uniforms.time.value += 0.01;
+//         }
+//     });
+
+//     renderer.render(scene, camera);
+// }
+// animateGradient();
