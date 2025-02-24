@@ -1,0 +1,869 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "os,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os.",
+        "description": "os.",
+        "detail": "os.",
+        "documentation": {}
+    },
+    {
+        "label": "urlparse",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponseRedirect",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponseRedirect",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "csrf_exempt",
+        "importPath": "django.views.decorators.csrf",
+        "description": "django.views.decorators.csrf",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "render_to_string",
+        "importPath": "django.template.loader",
+        "description": "django.template.loader",
+        "isExtraImport": true,
+        "detail": "django.template.loader",
+        "documentation": {}
+    },
+    {
+        "label": "get_language",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
+        "isExtraImport": true,
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "activate",
+        "importPath": "django.utils.translation",
+        "description": "django.utils.translation",
+        "isExtraImport": true,
+        "detail": "django.utils.translation",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.asgi",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.asgi",
+        "peekOfCode": "application = get_asgi_application()",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# note: initializes environment variable manager\nenv = environ.Env(\n    DEBUG=(bool, False)\n)\n# note: reading .env file\nenviron.Env.read_env(os.path.join(BASE_DIR.parent.parent.parent / '.env'))\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\nCLIENT_ID = env(\"CLIENT_ID\")",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "env",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "env = environ.Env(\n    DEBUG=(bool, False)\n)\n# note: reading .env file\nenviron.Env.read_env(os.path.join(BASE_DIR.parent.parent.parent / '.env'))\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\nCLIENT_ID = env(\"CLIENT_ID\")\nCLIENT_SECRET = env(\"CLIENT_SECRET\")\nREDIRECT_URI = env(\"REDIRECT_URI\")",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CLIENT_ID",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "CLIENT_ID = env(\"CLIENT_ID\")\nCLIENT_SECRET = env(\"CLIENT_SECRET\")\nREDIRECT_URI = env(\"REDIRECT_URI\")\nAUTH_URL = env(\"AUTHORIZATION_URL\")\nTOKEN_URL = env(\"TOKEN_URL\")\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = env('SECRET_KEY', default='django-insecure-)g4-0v+%z*#nwa=k%-5)#k+o*z2e^k--@+uf&^k#ms*ioiyfc_')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = env.bool('DEBUG', default=True)\nALLOWED_HOSTS = [",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CLIENT_SECRET",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "CLIENT_SECRET = env(\"CLIENT_SECRET\")\nREDIRECT_URI = env(\"REDIRECT_URI\")\nAUTH_URL = env(\"AUTHORIZATION_URL\")\nTOKEN_URL = env(\"TOKEN_URL\")\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = env('SECRET_KEY', default='django-insecure-)g4-0v+%z*#nwa=k%-5)#k+o*z2e^k--@+uf&^k#ms*ioiyfc_')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = env.bool('DEBUG', default=True)\nALLOWED_HOSTS = [\n    'localhost', ",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "REDIRECT_URI",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "REDIRECT_URI = env(\"REDIRECT_URI\")\nAUTH_URL = env(\"AUTHORIZATION_URL\")\nTOKEN_URL = env(\"TOKEN_URL\")\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = env('SECRET_KEY', default='django-insecure-)g4-0v+%z*#nwa=k%-5)#k+o*z2e^k--@+uf&^k#ms*ioiyfc_')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = env.bool('DEBUG', default=True)\nALLOWED_HOSTS = [\n    'localhost', \n    '127.0.0.1', ",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_URL",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "AUTH_URL = env(\"AUTHORIZATION_URL\")\nTOKEN_URL = env(\"TOKEN_URL\")\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = env('SECRET_KEY', default='django-insecure-)g4-0v+%z*#nwa=k%-5)#k+o*z2e^k--@+uf&^k#ms*ioiyfc_')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = env.bool('DEBUG', default=True)\nALLOWED_HOSTS = [\n    'localhost', \n    '127.0.0.1', \n    '0.0.0.0',",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TOKEN_URL",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "TOKEN_URL = env(\"TOKEN_URL\")\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = env('SECRET_KEY', default='django-insecure-)g4-0v+%z*#nwa=k%-5)#k+o*z2e^k--@+uf&^k#ms*ioiyfc_')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = env.bool('DEBUG', default=True)\nALLOWED_HOSTS = [\n    'localhost', \n    '127.0.0.1', \n    '0.0.0.0',\n    'nginx',",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "SECRET_KEY = env('SECRET_KEY', default='django-insecure-)g4-0v+%z*#nwa=k%-5)#k+o*z2e^k--@+uf&^k#ms*ioiyfc_')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = env.bool('DEBUG', default=True)\nALLOWED_HOSTS = [\n    'localhost', \n    '127.0.0.1', \n    '0.0.0.0',\n    'nginx',\n]\n# CORS_ALLOWED_ORIGINS = [",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "DEBUG = env.bool('DEBUG', default=True)\nALLOWED_HOSTS = [\n    'localhost', \n    '127.0.0.1', \n    '0.0.0.0',\n    'nginx',\n]\n# CORS_ALLOWED_ORIGINS = [\n#     \"http://localhost:5173\",  # Origine del frontend\n#     \"http://localhost:8000\",",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_HOSTS",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "ALLOWED_HOSTS = [\n    'localhost', \n    '127.0.0.1', \n    '0.0.0.0',\n    'nginx',\n]\n# CORS_ALLOWED_ORIGINS = [\n#     \"http://localhost:5173\",  # Origine del frontend\n#     \"http://localhost:8000\",\n#     \"http://127.0.0.1:8000\",",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTALLED_APPS",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "INSTALLED_APPS = [\n    'rest_framework',\n    'rest_framework_simplejwt',\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    # third-party apps",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SOCIALACCOUNT_AUTO_SIGNUP",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "SOCIALACCOUNT_AUTO_SIGNUP = False\nSOCIALACCOUNT_PROVIDERS = {\n    'fortytwo': {\n        'SCOPE': ['public'],\n        'AUTH_PARAMS': {'access_type': 'online'},\n    }\n}\nLANGUAGES = [\n    ('en', 'English'),\n    ('it', 'Italiano'),",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SOCIALACCOUNT_PROVIDERS",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "SOCIALACCOUNT_PROVIDERS = {\n    'fortytwo': {\n        'SCOPE': ['public'],\n        'AUTH_PARAMS': {'access_type': 'online'},\n    }\n}\nLANGUAGES = [\n    ('en', 'English'),\n    ('it', 'Italiano'),\n    ('kr', '한국어'),",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGES",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "LANGUAGES = [\n    ('en', 'English'),\n    ('it', 'Italiano'),\n    ('kr', '한국어'),\n]\nLANGUAGE_CODE = 'en'\n# CSRF_TRUSTED_ORIGINS = [\n#     \"http://localhost:5173\",\n#     \"https://localhost\",\n#     \"https://127.0.0.1\",",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "LANGUAGE_CODE = 'en'\n# CSRF_TRUSTED_ORIGINS = [\n#     \"http://localhost:5173\",\n#     \"https://localhost\",\n#     \"https://127.0.0.1\",\n#     \"http://127.0.0.1\",\n#     \"https://tunnel\",\n#     \"http://0.0.0.0\",\n#     \"https://nginx\",\n#     \"http://nginx\",",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORS_ALLOW_CREDENTIALS",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "CORS_ALLOW_CREDENTIALS = True\nCORS_ALLOW_HEADERS = [\n    'content-type',\n    'authorization',\n    'x-requested-with',\n    \"x-csrftoken\",\n    'accept',\n    'origin',\n]\nAUTHENTICATION_BACKENDS = [",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORS_ALLOW_HEADERS",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "CORS_ALLOW_HEADERS = [\n    'content-type',\n    'authorization',\n    'x-requested-with',\n    \"x-csrftoken\",\n    'accept',\n    'origin',\n]\nAUTHENTICATION_BACKENDS = [\n    'django.contrib.auth.backends.ModelBackend',",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTHENTICATION_BACKENDS",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "AUTHENTICATION_BACKENDS = [\n    'django.contrib.auth.backends.ModelBackend',\n    'allauth.account.auth_backends.AuthenticationBackend'\n]\n# 42 Login\n# SOCIALACCOUNT_PROVIDERS = {\n#     'google': {\n#         'APP': {\n#             'client_id': '<your-client-id>',\n#             'secret': '<your-client-secret>',",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTHENTICATION_BACKENDS",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "AUTHENTICATION_BACKENDS = [\n    'django.contrib.auth.backends.ModelBackend',  # Default backend\n    'allauth.account.auth_backends.AuthenticationBackend',  # Allauth backend\n]\nEMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'\nMIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_BACKEND",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'\nMIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n    'allauth.account.middleware.AccountMiddleware',",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIDDLEWARE",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n    'allauth.account.middleware.AccountMiddleware',\n    'corsheaders.middleware.CorsMiddleware',",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATICFILES_STORAGE",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "STATICFILES_STORAGE = \"whitenoise.storage.CompressedManifestStaticFilesStorage\"\nCORS_ORIGIN_ALLOW_ALL = True\nREST_FRAMEWORK = {\n    'DEFAULT_RENDERER_CLASSES': [\n        'rest_framework.renderers.JSONRenderer',  # Rende l'API solo JSON\n    ],\n    'DEFAULT_AUTHENTICATION_CLASSES': [\n        'rest_framework.authentication.SessionAuthentication',  # Per i template Django\n        'rest_framework.authentication.BasicAuthentication',    # Per autenticazione base (opzionale)\n        'rest_framework_simplejwt.authentication.JWTAuthentication',  # Per il login via API",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORS_ORIGIN_ALLOW_ALL",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "CORS_ORIGIN_ALLOW_ALL = True\nREST_FRAMEWORK = {\n    'DEFAULT_RENDERER_CLASSES': [\n        'rest_framework.renderers.JSONRenderer',  # Rende l'API solo JSON\n    ],\n    'DEFAULT_AUTHENTICATION_CLASSES': [\n        'rest_framework.authentication.SessionAuthentication',  # Per i template Django\n        'rest_framework.authentication.BasicAuthentication',    # Per autenticazione base (opzionale)\n        'rest_framework_simplejwt.authentication.JWTAuthentication',  # Per il login via API\n    ],",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "REST_FRAMEWORK",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_RENDERER_CLASSES': [\n        'rest_framework.renderers.JSONRenderer',  # Rende l'API solo JSON\n    ],\n    'DEFAULT_AUTHENTICATION_CLASSES': [\n        'rest_framework.authentication.SessionAuthentication',  # Per i template Django\n        'rest_framework.authentication.BasicAuthentication',    # Per autenticazione base (opzionale)\n        'rest_framework_simplejwt.authentication.JWTAuthentication',  # Per il login via API\n    ],\n    'DEFAULT_PERMISSION_CLASSES': [",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGIN_URL",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "LOGIN_URL = '/login/'\nLOGOUT_REDIRECT_URL = '/'\nACCOUNT_USERNAME_REQUIRED = False\nLOGIN_REDIRECT_URL = '/'\nCSRF_COOKIE_HTTPONLY = True\nCSRF_COOKIE_SECURE = False\nCSRF_COOKIE_SAMESITE = 'Lax'\nSESSION_COOKIE_SAMESITE = 'Lax'\n# SIMPLE_JWT = {\n#     \"ACCESS_TOKEN_LIFETIME\": timedelta(minutes=30),  # Durata del token",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGOUT_REDIRECT_URL",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "LOGOUT_REDIRECT_URL = '/'\nACCOUNT_USERNAME_REQUIRED = False\nLOGIN_REDIRECT_URL = '/'\nCSRF_COOKIE_HTTPONLY = True\nCSRF_COOKIE_SECURE = False\nCSRF_COOKIE_SAMESITE = 'Lax'\nSESSION_COOKIE_SAMESITE = 'Lax'\n# SIMPLE_JWT = {\n#     \"ACCESS_TOKEN_LIFETIME\": timedelta(minutes=30),  # Durata del token\n#     \"REFRESH_TOKEN_LIFETIME\": timedelta(days=7),  # Durata del refresh token",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ACCOUNT_USERNAME_REQUIRED",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "ACCOUNT_USERNAME_REQUIRED = False\nLOGIN_REDIRECT_URL = '/'\nCSRF_COOKIE_HTTPONLY = True\nCSRF_COOKIE_SECURE = False\nCSRF_COOKIE_SAMESITE = 'Lax'\nSESSION_COOKIE_SAMESITE = 'Lax'\n# SIMPLE_JWT = {\n#     \"ACCESS_TOKEN_LIFETIME\": timedelta(minutes=30),  # Durata del token\n#     \"REFRESH_TOKEN_LIFETIME\": timedelta(days=7),  # Durata del refresh token\n#     \"AUTH_HEADER_TYPES\": (\"Bearer\",),",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGIN_REDIRECT_URL",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "LOGIN_REDIRECT_URL = '/'\nCSRF_COOKIE_HTTPONLY = True\nCSRF_COOKIE_SECURE = False\nCSRF_COOKIE_SAMESITE = 'Lax'\nSESSION_COOKIE_SAMESITE = 'Lax'\n# SIMPLE_JWT = {\n#     \"ACCESS_TOKEN_LIFETIME\": timedelta(minutes=30),  # Durata del token\n#     \"REFRESH_TOKEN_LIFETIME\": timedelta(days=7),  # Durata del refresh token\n#     \"AUTH_HEADER_TYPES\": (\"Bearer\",),\n# }",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CSRF_COOKIE_HTTPONLY",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "CSRF_COOKIE_HTTPONLY = True\nCSRF_COOKIE_SECURE = False\nCSRF_COOKIE_SAMESITE = 'Lax'\nSESSION_COOKIE_SAMESITE = 'Lax'\n# SIMPLE_JWT = {\n#     \"ACCESS_TOKEN_LIFETIME\": timedelta(minutes=30),  # Durata del token\n#     \"REFRESH_TOKEN_LIFETIME\": timedelta(days=7),  # Durata del refresh token\n#     \"AUTH_HEADER_TYPES\": (\"Bearer\",),\n# }\nROOT_URLCONF = 'django_transcendence.urls'",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CSRF_COOKIE_SECURE",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "CSRF_COOKIE_SECURE = False\nCSRF_COOKIE_SAMESITE = 'Lax'\nSESSION_COOKIE_SAMESITE = 'Lax'\n# SIMPLE_JWT = {\n#     \"ACCESS_TOKEN_LIFETIME\": timedelta(minutes=30),  # Durata del token\n#     \"REFRESH_TOKEN_LIFETIME\": timedelta(days=7),  # Durata del refresh token\n#     \"AUTH_HEADER_TYPES\": (\"Bearer\",),\n# }\nROOT_URLCONF = 'django_transcendence.urls'\nTEMPLATES = [",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CSRF_COOKIE_SAMESITE",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "CSRF_COOKIE_SAMESITE = 'Lax'\nSESSION_COOKIE_SAMESITE = 'Lax'\n# SIMPLE_JWT = {\n#     \"ACCESS_TOKEN_LIFETIME\": timedelta(minutes=30),  # Durata del token\n#     \"REFRESH_TOKEN_LIFETIME\": timedelta(days=7),  # Durata del refresh token\n#     \"AUTH_HEADER_TYPES\": (\"Bearer\",),\n# }\nROOT_URLCONF = 'django_transcendence.urls'\nTEMPLATES = [\n    {",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SESSION_COOKIE_SAMESITE",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "SESSION_COOKIE_SAMESITE = 'Lax'\n# SIMPLE_JWT = {\n#     \"ACCESS_TOKEN_LIFETIME\": timedelta(minutes=30),  # Durata del token\n#     \"REFRESH_TOKEN_LIFETIME\": timedelta(days=7),  # Durata del refresh token\n#     \"AUTH_HEADER_TYPES\": (\"Bearer\",),\n# }\nROOT_URLCONF = 'django_transcendence.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_URLCONF",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "ROOT_URLCONF = 'django_transcendence.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "WSGI_APPLICATION",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "WSGI_APPLICATION = 'django_transcendence.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.1/ref/settings/#databases\nDATABASES_URL = env.db_url('DATABASE_URL')\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': env('POSTGRES_DB'),\n        'USER': env('POSTGRES_USER'),\n        'PASSWORD': env('POSTGRES_PASSWORD'),",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES_URL",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "DATABASES_URL = env.db_url('DATABASE_URL')\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': env('POSTGRES_DB'),\n        'USER': env('POSTGRES_USER'),\n        'PASSWORD': env('POSTGRES_PASSWORD'),\n        'HOST': env('POSTGRES_HOST', default='localhost'),\n        'PORT': env('POSTGRES_PORT', default='5432'),\n    }",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': env('POSTGRES_DB'),\n        'USER': env('POSTGRES_USER'),\n        'PASSWORD': env('POSTGRES_PASSWORD'),\n        'HOST': env('POSTGRES_HOST', default='localhost'),\n        'PORT': env('POSTGRES_PORT', default='5432'),\n    }\n}",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_PASSWORD_VALIDATORS",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_ROOT = os.path.join(BASE_DIR, '/staticfiles')\nSTATIC_URL = '/static/'\n# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'pong_game/static')]\n# STATICFILES_DIRS = [",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_ROOT = os.path.join(BASE_DIR, '/staticfiles')\nSTATIC_URL = '/static/'\n# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'pong_game/static')]\n# STATICFILES_DIRS = [\n#    os.path.join(BASE_DIR, 'pong_game/static'),  # Adjusted to point to your pong_game/static directory",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_I18N",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_ROOT = os.path.join(BASE_DIR, '/staticfiles')\nSTATIC_URL = '/static/'\n# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'pong_game/static')]\n# STATICFILES_DIRS = [\n#    os.path.join(BASE_DIR, 'pong_game/static'),  # Adjusted to point to your pong_game/static directory\n# ]",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_TZ",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_ROOT = os.path.join(BASE_DIR, '/staticfiles')\nSTATIC_URL = '/static/'\n# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'pong_game/static')]\n# STATICFILES_DIRS = [\n#    os.path.join(BASE_DIR, 'pong_game/static'),  # Adjusted to point to your pong_game/static directory\n# ]\n# Default primary key field type",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_ROOT",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, '/staticfiles')\nSTATIC_URL = '/static/'\n# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'pong_game/static')]\n# STATICFILES_DIRS = [\n#    os.path.join(BASE_DIR, 'pong_game/static'),  # Adjusted to point to your pong_game/static directory\n# ]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n# login",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "STATIC_URL = '/static/'\n# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'pong_game/static')]\n# STATICFILES_DIRS = [\n#    os.path.join(BASE_DIR, 'pong_game/static'),  # Adjusted to point to your pong_game/static directory\n# ]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n# login\n# Base URL for login and logout",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AUTO_FIELD",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n# login\n# Base URL for login and logout\n# LOGIN_REDIRECT_URL = '/'  # Redirect after successful login\n# ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout\n# ACCOUNT_LOGOUT_ON_GET = True  # Logs out immediately on a GET request\n# # Email and Username settings\n# ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # Use 'username', 'email', or 'username_email'\n# ACCOUNT_EMAIL_REQUIRED = True  # Require email during signup\n# ACCOUNT_EMAIL_VERIFICATION = 'optional'  # Can be 'mandatory', 'optional', or 'none'",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.settings",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.urls",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.urls",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('accounts/', include('allauth.urls')),  # Adds allauth URLs\n    path('', include('pong_game.urls')),  # include the pong_game URLs\n    path('', include('oauth2.urls')),  # include the OAuth2 URLs\n    # path('', include('authentication.urls')),  # include the CSRF URLs\n    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Login API (JWT)\n    # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),\n]\nif settings.DEBUG:",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.urls",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.django_transcendence.wsgi",
+        "description": "data.BACKEND.django_transcendence.django_transcendence.wsgi",
+        "peekOfCode": "application = get_wsgi_application()",
+        "detail": "data.BACKEND.django_transcendence.django_transcendence.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "Oauth2Config",
+        "kind": 6,
+        "importPath": "data.BACKEND.django_transcendence.oauth2.apps",
+        "description": "data.BACKEND.django_transcendence.oauth2.apps",
+        "peekOfCode": "class Oauth2Config(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'oauth2'",
+        "detail": "data.BACKEND.django_transcendence.oauth2.apps",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.oauth2.urls",
+        "description": "data.BACKEND.django_transcendence.oauth2.urls",
+        "peekOfCode": "urlpatterns = [\n    path('login/', login_42, name='login_42'),\n    path('auth/callback/', oauth_callback, name='oauth_callback'),\n    path(\"check-auth/\", check_auth, name=\"check_auth\"),\n    path(\"logout/\", logout_view, name=\"logout\"),\n]",
+        "detail": "data.BACKEND.django_transcendence.oauth2.urls",
+        "documentation": {}
+    },
+    {
+        "label": "login_42",
+        "kind": 2,
+        "importPath": "data.BACKEND.django_transcendence.oauth2.views",
+        "description": "data.BACKEND.django_transcendence.oauth2.views",
+        "peekOfCode": "def login_42(request):\n    auth_url = f\"{settings.AUTH_URL}\"\n    return HttpResponseRedirect(auth_url)\ndef oauth_callback(request):\n    code = request.GET.get('code')\n    if not code:\n        return JsonResponse({'error': 'No code provided'}, status=400)\n    token_url = f\"{settings.TOKEN_URL}\"\n    data = {\n        'grant_type': 'authorization_code',",
+        "detail": "data.BACKEND.django_transcendence.oauth2.views",
+        "documentation": {}
+    },
+    {
+        "label": "oauth_callback",
+        "kind": 2,
+        "importPath": "data.BACKEND.django_transcendence.oauth2.views",
+        "description": "data.BACKEND.django_transcendence.oauth2.views",
+        "peekOfCode": "def oauth_callback(request):\n    code = request.GET.get('code')\n    if not code:\n        return JsonResponse({'error': 'No code provided'}, status=400)\n    token_url = f\"{settings.TOKEN_URL}\"\n    data = {\n        'grant_type': 'authorization_code',\n        'client_id': settings.CLIENT_ID,\n        'client_secret': settings.CLIENT_SECRET,\n        'code': code,",
+        "detail": "data.BACKEND.django_transcendence.oauth2.views",
+        "documentation": {}
+    },
+    {
+        "label": "check_auth",
+        "kind": 2,
+        "importPath": "data.BACKEND.django_transcendence.oauth2.views",
+        "description": "data.BACKEND.django_transcendence.oauth2.views",
+        "peekOfCode": "def check_auth(request):\n    access_token = request.COOKIES.get(\"access_token\")\n    if not access_token:\n        return JsonResponse({\"authenticated\": False})\n    return JsonResponse({\"authenticated\": True})\n@csrf_exempt\ndef logout_view(request):\n    response = JsonResponse({\"message\": \"Logout effettuato con successo\"})\n    response.delete_cookie(\"access_token\")  # 🔥 Elimina il cookie!\n    return response",
+        "detail": "data.BACKEND.django_transcendence.oauth2.views",
+        "documentation": {}
+    },
+    {
+        "label": "logout_view",
+        "kind": 2,
+        "importPath": "data.BACKEND.django_transcendence.oauth2.views",
+        "description": "data.BACKEND.django_transcendence.oauth2.views",
+        "peekOfCode": "def logout_view(request):\n    response = JsonResponse({\"message\": \"Logout effettuato con successo\"})\n    response.delete_cookie(\"access_token\")  # 🔥 Elimina il cookie!\n    return response",
+        "detail": "data.BACKEND.django_transcendence.oauth2.views",
+        "documentation": {}
+    },
+    {
+        "label": "PongGameConfig",
+        "kind": 6,
+        "importPath": "data.BACKEND.django_transcendence.pong_game.apps",
+        "description": "data.BACKEND.django_transcendence.pong_game.apps",
+        "peekOfCode": "class PongGameConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'pong_game'",
+        "detail": "data.BACKEND.django_transcendence.pong_game.apps",
+        "documentation": {}
+    },
+    {
+        "label": "app_name",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.pong_game.urls",
+        "description": "data.BACKEND.django_transcendence.pong_game.urls",
+        "peekOfCode": "app_name = 'pong_game'\nurlpatterns = [\n    path('', views.home, name='home'),\n    path('pong_game/', views.pong_game, name='pong_game'),\n    path('translations/', views.translations, name='translations'),  # Nome corretto\n    path('set_language/<str:language_code>/', views.set_language, name='set_language'),  # Aggiunto per cambiare lingua\n    # path('profile/', views.signup_form, name='profile'),\n]",
+        "detail": "data.BACKEND.django_transcendence.pong_game.urls",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "data.BACKEND.django_transcendence.pong_game.urls",
+        "description": "data.BACKEND.django_transcendence.pong_game.urls",
+        "peekOfCode": "urlpatterns = [\n    path('', views.home, name='home'),\n    path('pong_game/', views.pong_game, name='pong_game'),\n    path('translations/', views.translations, name='translations'),  # Nome corretto\n    path('set_language/<str:language_code>/', views.set_language, name='set_language'),  # Aggiunto per cambiare lingua\n    # path('profile/', views.signup_form, name='profile'),\n]",
+        "detail": "data.BACKEND.django_transcendence.pong_game.urls",
+        "documentation": {}
+    },
+    {
+        "label": "home",
+        "kind": 2,
+        "importPath": "data.BACKEND.django_transcendence.pong_game.views",
+        "description": "data.BACKEND.django_transcendence.pong_game.views",
+        "peekOfCode": "def home(request):\n    # if request.user.is_authenticated:\n    #     # Redirect authenticated users to the profile page\n    #     return HttpResponseRedirect(\"/profile/\")\n    # # Render the homepage for unauthenticated users\n    # return render(request, \"/home/\")\n    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':\n        # Render only specific blocks based on context flags\n        content_html = render_to_string('home.html', {'only_content': True}, request=request)\n        return JsonResponse({",
+        "detail": "data.BACKEND.django_transcendence.pong_game.views",
+        "documentation": {}
+    },
+    {
+        "label": "pong_game",
+        "kind": 2,
+        "importPath": "data.BACKEND.django_transcendence.pong_game.views",
+        "description": "data.BACKEND.django_transcendence.pong_game.views",
+        "peekOfCode": "def pong_game(request):\n    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':\n        # Render only specific blocks based on context flags\n        content_html = render_to_string('game_menu.html', {'only_content': True}, request=request)\n        return JsonResponse({\n            'content': content_html,\n        })\n    # for a full-page load\n    return render(request, 'base.html')\ndef translations(request):",
+        "detail": "data.BACKEND.django_transcendence.pong_game.views",
+        "documentation": {}
+    },
+    {
+        "label": "translations",
+        "kind": 2,
+        "importPath": "data.BACKEND.django_transcendence.pong_game.views",
+        "description": "data.BACKEND.django_transcendence.pong_game.views",
+        "peekOfCode": "def translations(request):\n    language = request.GET.get('lang', get_language())\n    translation_path = os.path.join(settings.STATIC_ROOT, 'translations', f'{language}.json')\n    fallback_path = os.path.join(settings.STATIC_ROOT, 'translations', 'en.json')\n    try:\n        with open(translation_path, 'r', encoding='utf-8') as f:\n            translations_data = json.load(f)\n        return JsonResponse(translations_data)\n    except FileNotFoundError:\n        with open(fallback_path, 'r', encoding='utf-8') as f:",
+        "detail": "data.BACKEND.django_transcendence.pong_game.views",
+        "documentation": {}
+    },
+    {
+        "label": "set_language",
+        "kind": 2,
+        "importPath": "data.BACKEND.django_transcendence.pong_game.views",
+        "description": "data.BACKEND.django_transcendence.pong_game.views",
+        "peekOfCode": "def set_language(request, language_code):\n    supported_languages = ['en', 'it', 'kr']\n    if language_code in supported_languages:\n        activate(language_code)\n        response = JsonResponse({'status': 'success'})\n        response.set_cookie('django_language', language_code)  # 🔥 Salva nel cookie\n        request.session['django_language'] = language_code\n        return response\n    else:\n        return JsonResponse({'status': 'error', 'message': 'Lingua non supportata'}, status=400)",
+        "detail": "data.BACKEND.django_transcendence.pong_game.views",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "data.BACKEND.django_transcendence.manage",
+        "description": "data.BACKEND.django_transcendence.manage",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_transcendence.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
+        "detail": "data.BACKEND.django_transcendence.manage",
+        "documentation": {}
+    }
+]

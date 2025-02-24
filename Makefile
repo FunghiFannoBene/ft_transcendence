@@ -57,6 +57,10 @@ endif
 start:
 	-@sudo service docker start
 
+createfolders:
+	@mkdir data/elasticsearch-storage data/BACKEND  data/Transcendence_DB data/filebeat-data  data/grafana-storage | true
+	@sudo chown -R root:root srcs/filebeat.yml | true
+
 build:
 	@echo "${WHITE}Welcome to ${MAGENTA}${PROJECT_NAME} 🏓${DEF_COLOR}\n"
 	sleep 1

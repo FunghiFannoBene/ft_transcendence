@@ -10,29 +10,6 @@ networks:
 #------------------------------ MAIN SERVICES ------------------------------>
 
 services:
-  nginx:
-    container_name: nginx-transcendence
-    build: requirements/nginx/
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - backend
-    networks:
-      - Transcendence_Network
-    stdin_open: true
-    tty: true
-    env_file:
-      - .env
-    volumes:
-      - NGINX:/etc/nginx
-      - ./data/nginx/ssl:/etc/nginx/ssl
-      # - ./certs:/etc/letsencrypt
-      # - ./data/nginx:/var/www/certbot
-    deploy:
-      replicas: ${DISABLE}
-
   backend:
     container_name: backend-transcendence
     build: ./requirements/backend/
@@ -282,13 +259,6 @@ volumes:
       o: bind
       type: none
 
-  NGINX:
-    name: Transcendence_nginx_volume
-    driver: local
-    driver_opts:
-      device: ${HOME_NEW}/${PROJECT}/data/NGINX
-      o: bind
-      type: none
 
   # REDIS:
   #   name: Transcendence_redis_volume
