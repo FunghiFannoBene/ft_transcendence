@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os, environ # note: environ is for environment variables management
 from urllib.parse import urlparse
-
+from datetime import timedelta
+from django.utils.translation import gettext_lazy as _ # for translation
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -87,14 +88,6 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-LANGUAGES = [
-    ('en', 'English'),
-    ('it', 'Italiano'),
-    ('kr', '한국어'),
-]
-
-LANGUAGE_CODE = 'en'
-
 # CSRF_TRUSTED_ORIGINS = [
 #     "http://localhost:5173",
 #     "https://localhost",
@@ -153,7 +146,7 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.locale.LocaleMiddleware', # activating translation
 ]
 
 
@@ -176,8 +169,6 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
 }
-
-from datetime import timedelta
 
 LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/'
@@ -254,13 +245,23 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_TZ = True
+
+LOCALE_PATHS = [
+   os.path.join(BASE_DIR, 'locale')
+]
+
+LANGUAGES = (
+   ('en', _('English')),
+   ('it', _('Italian')),
+   ('ko', _('Korean')),
+)
 
 
 # Static files (CSS, JavaScript, Images)

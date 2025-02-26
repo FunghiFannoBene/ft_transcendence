@@ -30,6 +30,11 @@ urlpatterns = [
     # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
+urlpatterns += i18n_patterns(
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('', include("pong.urls")),
+    path('', include("oauth2.urls")),
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
