@@ -18,7 +18,7 @@ PROJECT_NAME = ft_transcendence
 COMPOSE_PATH = srcs/docker-compose.yml
 USER = ${shell id -un} # detect current user dynamically
 
-# OS decetion and compose command
+# OS detection and compose command
 UNAME_S := ${shell uname -s}
 ifeq (${UNAME_S}, Darwin) # MacOS
     COMPOSE = docker-compose
