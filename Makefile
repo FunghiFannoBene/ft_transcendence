@@ -71,7 +71,7 @@ build:
 	"${YELLOW}It'll just take a sec ;P${DEF_COLOR}\n"\
 	"----------\n"
 	sleep 1
-	${COMPOSE} -f ${COMPOSE_PATH} -p ${PROJECT_NAME} up --build -d
+	${COMPOSE} -f ${COMPOSE_PATH} -p ${PROJECT_NAME} up --build
 
 down:
 	${COMPOSE} -f ${COMPOSE_PATH} -p ${PROJECT_NAME} down
