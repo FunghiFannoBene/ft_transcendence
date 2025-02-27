@@ -34,17 +34,23 @@ const tournamentOffcanvas = new bootstrap.Offcanvas('#offcanvasTournament')
 const tournamentFinishContainer = document.getElementById("tournament-finish")
 const tournamentWinner = document.getElementById("tournament-winner")
 
+console.log("generateTournamentButton", generateTournamentButton);
+
 const barPlayer1Name = document.getElementById("namePlayer1")
 const barPlayer2Name = document.getElementById("namePlayer2")
-const barPlayer1Info = document.getElementById("namePlayer3")
-const barPlayer2Info = document.getElementById("namePlayer4")
+// const barPlayer1Info = document.getElementById("namePlayer3")
+// const barPlayer2Info = document.getElementById("namePlayer4")
 
 let players = []
 let rounds = {}
 let currentMatchIndex = 0
 let roundWinners = []
 
+console.log("players", players);
+
 function nextMatchModal(playersName) {
+	console.log("Next match modal");
+
 	modalBodyGamePlayers.textContent = `${playersName[0]} VS ${playersName[1]}`
 	modal.show()
 	barPlayer1Name.textContent = `${playersName[0]}`
@@ -85,8 +91,8 @@ resetTournamentButton.addEventListener("click", () => {
 	playerInputs.classList.remove("d-none")
 	barPlayer1Name.textContent = "Player 1"
     barPlayer2Name.textContent = "Player 2"
-    barPlayer1Info.classList.add("d-none")
-    barPlayer2Info.classList.add("d-none")
+    // barPlayer1Info.classList.add("d-none")
+    // barPlayer2Info.classList.add("d-none")
 })
 
 generateTournamentButton.addEventListener("click", () => {
@@ -153,6 +159,8 @@ function generateMatches() {
 }
 
 function displayMatches() {
+	console.log("Display matches");
+	
 	const matches = rounds[Object.keys(rounds).length]
 
 	const matchTitle = document.createElement("h2")
@@ -185,6 +193,7 @@ function displayMatches() {
 		player2Div.className = "player d-inline-flex text-bg-secondary py-1 px-2 border rounded-2"
 		player2Div.textContent = match[1] || "Bye"
 
+
 		matchDiv.appendChild(gameTitle)
 		matchDiv.appendChild(player1Div)
 		matchDiv.appendChild(vsSpan)
@@ -198,10 +207,13 @@ function displayMatches() {
 
 
 function highlightCurrentMatch() {
+	
 	const round = Object.keys(rounds).length;
 	const allMatches = document.querySelectorAll(`.match${round}`);
-	console.log(allMatches);
+	console.log("allMatches", allMatches);
 	let currentPlayersName = [];
+
+	console.log(`currentPlayersName: ${currentPlayersName}`);
 
 	for (let index = 0; index < allMatches.length; index++) {
 		const match = allMatches[index];
@@ -273,18 +285,6 @@ window.addEventListener("gameResultEvent", (event) => {
 	const winnerIndex = event.detail
 	advanceMatch(winnerIndex)
 })
-
-document.addEventListener('translationsLoaded', (event) => {
-	const language = event.detail.language;
-	console.log(`Traduzioni caricate per la lingua: ${language}`);
-
-	// Esegui qui il codice che dipende dalle traduzioni
-	initializeOtherScripts();
-});
-
-function initializeOtherScripts() {
-	console.log("Altri script inizializzati dopo il caricamento delle traduzioni.");
-}
 
 // Test
 // document.addEventListener("keydown", (e) => {

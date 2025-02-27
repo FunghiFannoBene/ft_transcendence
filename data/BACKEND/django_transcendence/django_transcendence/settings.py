@@ -57,8 +57,8 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework',
-    'rest_framework_simplejwt',
+    # 'rest_framework',
+    # 'rest_framework_simplejwt',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,12 +66,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third-party apps
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'rest_framework.authtoken',  # Add this line
-    'dj_rest_auth.registration',
-    'dj_rest_auth',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'rest_framework.authtoken',  # Add this line
+    # 'dj_rest_auth.registration',
+    # 'dj_rest_auth',
     'pong_game',
     'corsheaders',
     'django_extensions',
@@ -119,21 +119,7 @@ CORS_ALLOW_HEADERS = [
     'origin',
 ]
 
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend'
-]
 
-# 42 Login
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'APP': {
-#             'client_id': '<your-client-id>',
-#             'secret': '<your-client-secret>',
-#             'key': ''
-#         }
-#     },
-# }
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # Default backend
@@ -150,7 +136,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
+    # 'allauth.account.middleware.AccountMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.locale.LocaleMiddleware',
@@ -161,33 +147,33 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',  # Rende l'API solo JSON
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',  # Per i template Django
-        'rest_framework.authentication.BasicAuthentication',    # Per autenticazione base (opzionale)
-        'rest_framework_simplejwt.authentication.JWTAuthentication',  # Per il login via API
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # Limita l'accesso alle API agli utenti autenticati
-    ],
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 10,
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': [
+#         'rest_framework.renderers.JSONRenderer',  # Rende l'API solo JSON
+#     ],
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.SessionAuthentication',  # Per i template Django
+#         'rest_framework.authentication.BasicAuthentication',    # Per autenticazione base (opzionale)
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',  # Per il login via API
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',  # Limita l'accesso alle API agli utenti autenticati
+#     ],
+#     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+#     "PAGE_SIZE": 10,
+# }
 
-from datetime import timedelta
+# from datetime import timedelta
 
-LOGIN_URL = '/login/'
-LOGOUT_REDIRECT_URL = '/'
-ACCOUNT_USERNAME_REQUIRED = False
+# LOGIN_URL = '/login/'
+# LOGOUT_REDIRECT_URL = '/'
+# ACCOUNT_USERNAME_REQUIRED = False
 
-LOGIN_REDIRECT_URL = '/'
-CSRF_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SECURE = False
-CSRF_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SAMESITE = 'Lax'
+# LOGIN_REDIRECT_URL = '/'
+# CSRF_COOKIE_HTTPONLY = True
+# CSRF_COOKIE_SECURE = False
+# CSRF_COOKIE_SAMESITE = 'Lax'
+# SESSION_COOKIE_SAMESITE = 'Lax'
 
 # SIMPLE_JWT = {
 #     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),  # Durata del token
@@ -235,20 +221,20 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#     },
+# ]
 
 
 # Internationalization

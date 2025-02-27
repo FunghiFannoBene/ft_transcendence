@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),  # Adds allauth URLs
+    # path('accounts/', include('allauth.urls')),  # Adds allauth URLs
     path('', include('pong_game.urls')),  # include the pong_game URLs
     path('', include('oauth2.urls')),  # include the OAuth2 URLs
     # path('', include('authentication.urls')),  # include the CSRF URLs

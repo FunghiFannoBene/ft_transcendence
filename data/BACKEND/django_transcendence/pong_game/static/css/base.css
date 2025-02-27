@@ -57,15 +57,15 @@
 /* Bottone di logout */
 #logout-btn {
   margin-right: 0;
-  width: 120px;
-  height: 40px;
+  width: 100px;
+  height: 35px;
   font-size: 16px;
   font-family: "Versa Versa";
   transition: box-shadow 0.3s, transform 0.3s;
   background: linear-gradient(120deg, #c32606 30%, #f3a81c 80%, #fdf8a3 100%);
   border: none;
   border-radius: 4px;
-  margin: 15px auto;
+  margin: 15px;
   display: block;
 }
 
@@ -75,8 +75,7 @@
   font-family: "Versa Versa";
   transition: box-shadow 0.3s, transform 0.3s;
   border: none;
-  margin: 15px auto;
-  display: block;
+  margin: 15px;
 }
 
 /* Media Queries per dispositivi con schermi più piccoli */
@@ -116,15 +115,16 @@
   }
 
   #logout-btn {
-    width: 100%;
-    margin-right: 0;
-    height: 40px;
-    font-size: 18px;
+    width: 90px;
+    height: 30px;
+    font-size: 15px;
+    margin: 20px;
   }
 
   #dropdown {
-    width: 100%;
+    width: 140px;
     height: 40px;
+    margin-right: 10px;
   }
 
   #title {
@@ -142,18 +142,26 @@
   }
 
   #logout-btn {
-    width: 100%;
-    height: 45px;
-    font-size: 20px;
+    width: 60px;
+    height: 25px;
+    font-size: 10px;
+    padding: 0px;
+    margin: 10px;
+    
   }
 
   #dropdown {
-    width: 100%;
-    height: 45px;
+    width: 70px;
+    height: 30px;
+    font-size: 10px;
+    padding: 0px;
+    margin: 5px;
   }
 
   #title {
     font-size: 2.5rem;
+    padding: 10px;
+    margin: 0px;
   }
 }
 

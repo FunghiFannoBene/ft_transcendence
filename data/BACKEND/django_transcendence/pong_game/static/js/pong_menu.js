@@ -57,7 +57,11 @@ const renderer = new THREE.WebGLRenderer({
     logarithmicDepthBuffer: true,
     alpha: true
 })
-renderer.setSize(window.innerWidth, window.innerHeight);
+
+const gameContainer = document.getElementById('game-container')
+renderer.setSize(gameContainer.clientWidth * 0.7, gameContainer.clientHeight * 0.7);
+
+
 renderer.setClearColor(0x000000, 0); // Imposta il colore nero con alpha 0 (trasparente)
 document.body.appendChild(renderer.domElement);
 
@@ -78,7 +82,6 @@ function updateScoreGeometry(score) {
 
 
 
-const gameContainer = document.getElementById('game-container')
 const sizes = {
     width: gameContainer.clientWidth,
     height: gameContainer.clientHeight,
@@ -443,17 +446,21 @@ document.addEventListener('keyup', (event) => {
 window.addEventListener('resize', handleResize)
 
 function handleResize() {
-    sizes.width = gameContainer.clientWidth
-    sizes.height = gameContainer.clientHeight
+    sizes.width = gameContainer.clientWidth;
+    sizes.height = gameContainer.clientHeight;
 
-    camera.aspect = sizes.width / sizes.height
-    camera.updateProjectionMatrix()
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix();
 
-    renderer.setSize(sizes.width, sizes.height)
+    renderer.setSize(sizes.width, sizes.height);
 
-    const pixelRatio = Math.min(window.devicePixelRatio, 2)
-    renderer.setPixelRatio(pixelRatio)
+    const pixelRatio = Math.min(window.devicePixelRatio, 2);
+    renderer.setPixelRatio(pixelRatio);
+
+    // Adatta anche la posizione della telecamera
+    camera.position.set(-40, 20 * (sizes.height / sizes.width), 0);
 }
+
 
 const offcanvasElements = document.querySelectorAll('.offcanvas');
 const playerBallContainer = document.getElementById("playerBall-box")
@@ -522,15 +529,15 @@ function startGame() {
 
 const barPlayer1Name = document.getElementById("player1-name-field")
 const barPlayer2Name = document.getElementById("player2-name-field")
-const barPlayer1Info = document.getElementById("player1-info-field")
-const barPlayer2Info = document.getElementById("player2-info-field")
+// const barPlayer1Info = document.getElementById("player1-info-field")
+// const barPlayer2Info = document.getElementById("player2-info-field")
 
 document.getElementById("startGame").addEventListener("click", () => {
     isTournament = false
     barPlayer1Name.textContent = "Player 1"
     barPlayer2Name.textContent = "Player 2"
-    barPlayer1Info.classList.add("d-none")
-    barPlayer2Info.classList.add("d-none")
+    // barPlayer1Info.classList.add("d-none")
+    // barPlayer2Info.classList.add("d-none")
     startGame()
 })
 
@@ -541,8 +548,8 @@ startMatchButton.addEventListener("click", () => {
     isTournament = true
     document.getElementById("playersOption2").checked = true
 
-    barPlayer1Info.classList.remove("d-none")
-    barPlayer2Info.classList.remove("d-none")
+    // barPlayer1Info.classList.remove("d-none")
+    // barPlayer2Info.classList.remove("d-none")
     startGame()
 })
 
@@ -552,6 +559,87 @@ function resetCamera() {
     camera.lookAt(new THREE.Vector3(0, 0, 0)); // Punto di vista iniziale
     isAnimating = false; // Assicurati che l'animazione sia ferma
 }
+
+// ... (il resto del codice rimane invariato)
+
+const isTouchDevice = 'ontouchstart' in window;
+
+if (isTouchDevice) {
+    // Abilita i pulsanti per il Player 1
+    document.getElementById('w-button').removeAttribute('disabled');
+    document.getElementById('s-button').removeAttribute('disabled');
+
+    // Abilita i pulsanti per il Player 2
+    document.getElementById('up-button').removeAttribute('disabled');
+    document.getElementById('down-button').removeAttribute('disabled');
+
+    document.getElementById('playersOption3').setAttribute('disabled', true);
+}
+// Aggiungi gli event listener per il touch
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+document.addEventListener('touchstart', (event) => {
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+});
+
+document.addEventListener('touchmove', (event) => {
+    touchEndX = event.touches[0].clientX;
+    touchEndY = event.touches[0].clientY;
+
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX > 0) {
+            player1KeyState.right = true;
+            player1KeyState.left = false;
+        } else {
+            player1KeyState.left = true;
+            player1KeyState.right = false;
+        }
+    }
+});
+
+document.addEventListener('touchend', () => {
+    player1KeyState.left = false;
+    player1KeyState.right = false;
+});
+
+
+document.getElementById('w-button').addEventListener('touchstart', () => {
+    player1KeyState.right = true;
+});
+document.getElementById('w-button').addEventListener('touchend', () => {
+    player1KeyState.right = false;
+});
+
+document.getElementById('s-button').addEventListener('touchstart', () => {
+    player1KeyState.left = true;
+});
+document.getElementById('s-button').addEventListener('touchend', () => {
+    player1KeyState.left = false;
+});
+
+// Player 2 (⬆ e ⬇)
+document.getElementById('up-button').addEventListener('touchstart', () => {
+    player2KeyState.right = true;
+});
+document.getElementById('up-button').addEventListener('touchend', () => {
+    player2KeyState.right = false;
+});
+
+document.getElementById('down-button').addEventListener('touchstart', () => {
+    player2KeyState.left = true;
+});
+document.getElementById('down-button').addEventListener('touchend', () => {
+    player2KeyState.left = false;
+});
+
+// ... (il resto del codice rimane invariato)
 
 // function animateGradient() {
 //     requestAnimationFrame(animateGradient);

@@ -26,11 +26,18 @@ async function loadTranslations(langCode) {
 // Funzione per applicare le traduzioni
 function applyTranslations(translations) {
   Object.keys(translations).forEach((key) => {
-    const elem = document.getElementById(key);
-    if (elem) {
-      elem.textContent = translations[key];
+    // const elem = document.getElementById(key);
+    const elements = document.querySelectorAll(`[data-translate-key="${key}"]`);
+    // if (elem) {
+    //   elem.textContent = translations[key];
+    // }
+    if (elements.length > 0) {
+      elements.forEach((element) => {
+        element.textContent = translations[key];
+      });
     }
   });
+  console.log('Traduzioni applicate con successo!');
 }
 
 // Funzione per aggiornare il testo del dropdown
@@ -47,15 +54,28 @@ function updateDropdownText(langCode) {
 // Gestione del cambio lingua tramite il menu
 document.querySelectorAll('.dropdown-item').forEach((item) => {
   if (item) {
-  item.addEventListener('click', async () => {
-    const selectedLang = item.textContent.trim();
-    const langCode = selectedLang === 'Italiano' ? 'it' : selectedLang === '한국어' ? 'kr' : 'en';
-    await changeLanguage(langCode);
-  });
-}
+    item.addEventListener('click', async () => {
+      const selectedLang = item.textContent.trim();
+      const langCode = selectedLang === 'Italiano' ? 'it' : selectedLang === '한국어' ? 'kr' : 'en';
+      await changeLanguage(langCode);
+    });
+  }
 });
 
-
-
-
+export async function getCookie() {
+  console.log('Recupero lingua dal cookie...');
+  
+  try {
+    const response = await fetch('/lang_cookie/');
+    const data = await response.json();
+    console.log('Lingua dal cookie:', data.language);
+    changeLanguage(data.language);
+    // setTimeout(() => {
+    //   changeLanguage(data.language);
+    // }
+    // , 100);
+  } catch (error) {
+    console.error('Errore nel recupero del cookie:', error);
+  }
+}
 

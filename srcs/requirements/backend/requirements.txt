@@ -3,8 +3,8 @@ certifi==2024.8.30
 charset-normalizer==3.4.0
 dj-rest-auth==7.0.0
 Django==5.1.2
-django-allauth==65.2.0
-djangorestframework==3.14.0
+# django-allauth==65.2.0
+# djangorestframework==3.14.0
 gunicorn
 idna==3.10
 packaging==24.1

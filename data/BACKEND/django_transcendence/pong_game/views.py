@@ -53,17 +53,20 @@ def translations(request):
             translations_data = json.load(f)
         return JsonResponse(translations_data, status=200)
 
-
 def set_language(request, language_code):
     supported_languages = ['en', 'it', 'kr']
     if language_code in supported_languages:
         activate(language_code)
         response = JsonResponse({'status': 'success'})
-        response.set_cookie('django_language', language_code)  # 🔥 Salva nel cookie
-        request.session['django_language'] = language_code
+        response.set_cookie('django_language', language_code)  # ✅ Solo il cookie è sufficiente
         return response
     else:
-        return JsonResponse({'status': 'error', 'message': 'Lingua non supportata'}, status=400)
+        return JsonResponse({'message': 'Language not set'})
+
+    
+def lang_cookie(request):
+    language = request.COOKIES.get('django_language')
+    return JsonResponse({'language': language})
 
 
 # def login_form(request):

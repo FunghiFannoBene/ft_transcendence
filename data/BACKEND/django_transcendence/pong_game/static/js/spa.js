@@ -1,13 +1,16 @@
 import { checkAuth } from "./auth.js";
+import { getCookie } from "./lang.js";
 
 export function initializeSPA() {
   window.addEventListener("load", () => {
     handleRoute();
+    getCookie();
     // observeDOMChanges();
     // setTimeout(checkAuth, 200);
   });
   window.addEventListener("popstate", () => {
     handleRoute();
+    getCookie();
     // observeDOMChanges();
     // setTimeout(checkAuth, 200);
   });
@@ -86,7 +89,6 @@ export async function handleRoute() {
   const scriptsToLoad = [];
 
   if (path.includes("/")) {
-    scriptsToLoad.push({ src: "/static/js/lang.js", isModule: true });
     scriptsToLoad.push({ src: "/static/js/auth.js", isModule: true });
     scriptsToLoad.push({ src: "/static/js/login.js", isModule: false });
   }
@@ -109,7 +111,10 @@ export async function handleRoute() {
     await Promise.all(
       scriptsToLoad.map(({ src, isModule }) => loadJS(src, isModule))
     );
-
+    // setTimeout(() => {
+    //   console.log("Get cookie");
+    //   getCookie();
+    // }, 100);
     console.log("✅ Tutti gli script sono stati ricaricati con successo.");
   } catch (error) {
     console.error("❌ Errore nel ricaricamento degli script:", error);
@@ -191,6 +196,7 @@ function removeExistingScripts(scriptSrcList) {
     }
   });
 }
+
 
 
 // // note: functions also for lang.js

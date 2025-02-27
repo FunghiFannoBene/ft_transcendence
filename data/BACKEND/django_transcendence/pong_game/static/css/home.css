@@ -3,10 +3,10 @@
   font-family: "Versa Versa";
   text-align: center;
   z-index: 1;
+  position: relative;
 }
 
 #btn-oauth {
-  margin-right: 30px;
   width: 300px;
   height: 69px;
   font-size: 20px;
@@ -16,6 +16,7 @@
   background: linear-gradient(120deg, #c32606 30%, #f3a81c 80%, #fdf8a3 100%);
   border: none;
   border-radius: 4px;
+  position: relative;
 }
 
 .btn-press {
@@ -62,19 +63,10 @@
     font-size: 40px; /* Ridurre la dimensione del testo per tablet */
   }
 
-  #btn-oauth,
-  #btn-signup {
+  #btn-oauth{
     width: 250px;
     height: 60px;
     font-size: 18px;
-  }
-
-  #icon-controller-sx,
-  #icon-ping-pong,
-  #icon-controller-dx {
-    width: 25px;
-    height: 25px;
-    font-size: 14px;
   }
 }
 
@@ -83,19 +75,10 @@
     font-size: 35px; /* Ridurre ulteriormente il testo per dispositivi mobili */
   }
 
-  #btn-oauth,
-  #btn-signup {
+  #btn-oauth {
     width: 220px;
     height: 50px;
     font-size: 16px;
-  }
-
-  #icon-controller-sx,
-  #icon-ping-pong,
-  #icon-controller-dx {
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
   }
 }
 
@@ -104,26 +87,16 @@
     font-size: 30px; /* Ancora più piccolo su schermi molto piccoli */
   }
 
-  #btn-oauth,
-  #btn-signup {
+  #btn-oauth {
     width: 200px;
     height: 45px;
     font-size: 14px;
   }
 
-  #icon-controller-sx,
-  #icon-ping-pong,
-  #icon-controller-dx {
-    width: 18px;
-    height: 18px;
-    font-size: 10px;
-  }
-
   /* Ulteriori modifiche per migliorare l'aspetto su dispositivi ultra piccoli */
-  #btn-oauth, #btn-signup {
+  #btn-oauth {
     margin-right: 10px;
     width: 100%; /* Bottone che occupa tutta la larghezza disponibile */
   }
 }
-
 

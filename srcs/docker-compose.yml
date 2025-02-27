@@ -52,7 +52,7 @@ services:
     container_name: postgres-transcendence
     build: ./requirements/postgres/
     volumes:
-      - Transcendence_DB:/var/lib/postgresql/data
+      # - Transcendence_DB:/var/lib/postgresql/data
       - ./postgres-config/postgresql.conf:/etc/postgresql/postgresql.conf  # File di configurazione personalizzato
       - ./postgres-config/pg_hba.conf:/etc/postgresql/pg_hba.conf  # File di autenticazione personalizzato # File di configurazione pg_hba.conf
     env_file:
